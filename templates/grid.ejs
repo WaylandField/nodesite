@@ -1,6 +1,6 @@
 <% if (rows.length) { 
    rows.forEach(function(columns){ %>
-   <div class="row<%if(fluid){%>-fluid<%}%>">
+   <div id="<%=uiId%>"  class="row<%if(fluid){%>-fluid<%}%>">
         <% columns.forEach(function(col){%>
            <div class="
            <%if(col.span){%>span<%=col.span%><%}%>

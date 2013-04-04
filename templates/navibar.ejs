@@ -1,0 +1,60 @@
+<%var ___renderMenu = function(labelBy, items){%>
+<ul class="dropdown-menu" role="menu"
+ <%if(labelBy){%>aria-labelledby="<%=labelBy%>"<%}%> >
+    <%items.forEach(function(item){%>
+        <%if(item.items&&item.items.length){%>
+            <li class="dropdown-submenu"><a tabindex="-1" href="#"><%=item.label%></a>
+                   <%___renderMenu(0,item.items);%>
+            </li>
+        <%}else if(item.divider){%>
+            <li class="divider"></li>
+        <%}else{%>
+            <li><a href="<%=(item.url?item.url:"#")%>"><%=item.label%></a></li>
+        <%}%>
+    <%});%>
+</ul>
+<%}%>
+
+<div id="<%=uiId%>" class="navbar
+     <%=config.fixedTop?"navbar-fixed-top":""%>
+     <%=config.fixedBottom?"navbar-fixed-bottom":""%>
+     <%=config.staticTop?"navbar-static-top":""%>
+     <%=config.staticBottom?"navbar-static-bottom":""%>
+     <%=config.inverse?"navbar-inverse":""%>
+     ">
+    <div class="navbar-inner">
+    <div class="
+       <%=config.container?config.container:""%>
+    ">
+    <%if(config.brand){%>
+        <a class="brand" href="#"><%=config.brand%></a>        
+    <%}%>
+    <ul class="nav">
+
+<%if(items&&items.length){
+    items.forEach(function(item){%>
+    <li class="
+       <%=(item.active?"active":"")%>
+       <%=(item.disabled?"disabled":"")%>
+       <%=(item.divider?"divider":"")%>
+       <%=(item.items?"dropdown":"")%>
+    ">
+       <%if(item.items){%>
+           <a class="dropdown-toggle"
+           data-toggle="dropdown"
+           href="#">
+               <%=item.label%>
+               <b class="caret"></b>
+           </a>
+       <%   ___renderMenu(item.labelBy, item.items);
+          }else if(item.divider){%>
+       <%}else if(item.url){%>
+           <a href="<%-item.url%>"><%=item.label%></a>
+       <%}else{%>
+           <%=item.label%>
+       <%}});
+       }%>
+    </ul> 
+    </div>
+    </div>
+</div>

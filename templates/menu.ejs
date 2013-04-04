@@ -1,0 +1,19 @@
+<%var ___renderMenu = function(uiId, labelBy, items){%>
+<ul class="dropdown-menu" role="menu"
+ <%if(uiId){%>id="<%=uiId%>"<%}%>
+ <%if(labelBy){%>aria-labelledby="<%=labelBy%>"<%}%> >
+    <%items.forEach(function(item){%>
+        <%if(item.items&&item.items.length){%>
+            <li class="dropdown-submenu"><a tabindex="-1" href="#"><%=item.label%></a>
+                   <%___renderMenu(0,0,item.items);%>
+            </li>
+        <%}else if(item.divider){%>
+            <li class="divider"></li>
+        <%}else{%>
+            <li><a tabindex="-1" href="<%=(item.url?item.url:"#")%>"><%=item.label%></a></li>
+        <%}%>
+    <%});%>
+</ul>
+<%}
+ ___renderMenu(uiId, labelBy, items);
+%>

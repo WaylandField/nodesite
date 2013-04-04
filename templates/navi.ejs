@@ -1,0 +1,50 @@
+<%var ___renderMenu = function(labelBy, items){%>
+<ul class="dropdown-menu" role="menu"
+ <%if(labelBy){%>aria-labelledby="<%=labelBy%>"<%}%> >
+    <%items.forEach(function(item){%>
+        <%if(item.items&&item.items.length){%>
+            <li class="dropdown-submenu"><a tabindex="-1" href="#"><%=item.label%></a>
+                   <%___renderMenu(0,item.items);%>
+            </li>
+        <%}else if(item.divider){%>
+            <li class="divider"></li>
+        <%}else{%>
+            <li><a tabindex="-1" href="<%=(item.url?item.url:"#")%>"><%=item.label%></a></li>
+        <%}%>
+    <%});%>
+</ul>
+<%}%>
+
+<ul id="<%=uiId%>" class="nav 
+<%if(config.list){%>nav-list<%}%>
+<%if(config.tab){%>nav-tabs<%}%>
+<%if(config.pill){%>nav-pills<%}%>
+<%if(config.stacked){%>nav-stacked<%}%>
+">
+<%if(items&&items.length){
+    items.forEach(function(item){%>
+        <li class="
+            <%=(item.header?"navi-header":"")%>
+            <%=(item.active?"active":"")%>
+            <%=(item.disabled?"disabled":"")%>
+            <%=(item.divider?"divider":"")%>
+            <%=(item.items?"dropdown":"")%>
+            ">
+            <%if(item.items){%>
+                <a class="dropdown-toggle"
+                data-toggle="dropdown"
+                href="#">
+                    <%=item.label%>
+                    <b class="caret"></b>
+                </a>
+            <%___renderMenu(item.labelBy, item.items);
+            }else if(item.divider){%>
+            <%}else if(item.url){%>
+                <a href="<%-item.url%>"><%=item.label%></a>
+            <%}else{%>
+                <%=item.label%>
+            <%}%>
+        </li>
+    <%});
+}%>
+</ul>

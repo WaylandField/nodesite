@@ -1,0 +1,12 @@
+<% if (rows.length) { 
+   rows.forEach(function(columns){ %>
+   <div class="row<%if(fluid){%>-fluid<%}%>">
+        <% columns.forEach(function(col){%>
+           <div class="
+           <%if(col.span){%>span<%=col.span%><%}%>
+           <%if(col.offset){%>offset<%=col.offset%><%}%> 
+           "><%-col.body%></div>
+        <%});%>
+   </div>
+<%});
+}%>

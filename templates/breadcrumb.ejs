@@ -1,0 +1,8 @@
+<ul id="<%=uiId%>" class="breadcrumb">
+    <%if(items&&items.length){
+        for(var k =0;k<items.length-1;k++){
+            <li><a href="<%=items[k].url?items[k].url:"#"%>">items[k].label</a> <span class="divider">/</span></li>
+        }
+        <li class="active">items[items.length-1].label</li>
+    }%>
+</ul>

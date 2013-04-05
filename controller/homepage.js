@@ -11,7 +11,9 @@ exports.index =  {
         var html= [];
         var navibar = uiFactory.create('navibar',{
             config:{
-                brand: "Brand"
+                brand: "Brand",
+                container: "container",
+                fixedTop:1
             },
             items: [
                 {active:1,

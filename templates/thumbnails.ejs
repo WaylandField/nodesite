@@ -1,0 +1,22 @@
+<%var thumbTag = "div";%>
+<ul id="<%=uiId%>" class="thumbnails">
+    <%if(items&&items.length){
+        items.forEach(function(item){
+            if(item.url){
+                thumbTag = "a";
+            }%>
+    <li class="<%=item.span?"span"+item.span:""%>">
+    <<%=thumbTag%> <%=item.url?'href="'+item.url+'"':''%> class="thumbnail">
+    <img src="<%=item.src?item.src:""%>" alt="<%=item.label?item.label:""%>">
+    <%if(item.caption){%>
+        <div class="caption">
+             <%if(item.caption.title){%><h3><%=item.caption.title%></h3><%}%>
+             <%if(item.caption.desc){%><p><%=item.caption.desc%></p><%}%>
+             <%if(item.caption.action){%><p><%=item.caption.action%></p><%}%>
+        </div>
+    <%}%>
+    </<%thumbTag%>>
+    </li>
+        <%});
+    }%>
+</ul>

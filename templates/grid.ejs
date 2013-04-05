@@ -5,6 +5,7 @@
            <div class="
            <%if(col.span){%>span<%=col.span%><%}%>
            <%if(col.offset){%>offset<%=col.offset%><%}%> 
+           <%=(col.css?col.css:"")%> 
            "><%-col.body%></div>
         <%});%>
    </div>

@@ -5,7 +5,10 @@
 
 var uiMap = {
     menu:{
-
+        postRender:''
+    },
+    navibar:{
+        postRender:''
     }
 };
 

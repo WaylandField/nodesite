@@ -29,8 +29,12 @@
     <%if(config.brand){%>
         <a class="brand" href="#"><%=config.brand%></a>        
     <%}%>
-    <ul class="nav">
-
+    <ul class="nav 
+    <%if(config.list){%>nav-list<%}%>
+    <%if(config.tab){%>nav-tabs<%}%>
+    <%if(config.pill){%>nav-pills<%}%>
+    <%if(config.stacked){%>nav-stacked<%}%>
+    ">
 <%if(items&&items.length){
     items.forEach(function(item){%>
     <li class="

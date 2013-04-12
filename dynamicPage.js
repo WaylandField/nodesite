@@ -17,16 +17,46 @@ module.exports = function(app, verbose){
                             brand: "Brand",
                             container: "container",
                             fixedTop:1,
-                            inverse:1
+                            inverse:1,
+                            pill:1
                         },
                         items:sect.data
                     }).html);
+/**                    html.push(uiFactory.create('navibar',{
+                        config:{
+                            brand: "Brand",
+                            container: "container",
+                            pill:1
+                        },
+                        items:sect.data
+                    }).html);**/
                     break;
                 case 'carousel':
                     html.push(uiFactory.create('carousel',{
                         config:{
                         },
                         items: sect.data
+                    }).html);
+                    break;
+                case 'grid':
+                    var rows = sect.rows;
+                    if(rows){
+                        for(var _i in rows){
+                            var row = rows[_i];
+                            for(var _ii in row){
+                                var column = row[_ii];
+                                column.body = uiFactory.create('hero',{
+                                    config:{
+                                    },
+                                    item: column.data
+                                }).html;
+                            }
+                        }
+                    }
+                    html.push(uiFactory.create('grid',{
+                        config:{
+                        },
+                        rows: sect.rows
                     }).html);
                     break;
                  default:
@@ -101,6 +131,33 @@ module.exports = function(app, verbose){
                             });
                         }
                     };
+                    break;
+                case 'grid':
+                    var rows = sect.rows;
+                    if(rows){
+                        for(var j=0;j<rows.length;j++){
+                            var row = rows[j];
+                            for(var _jj=0;_jj<row.length;_jj++){
+                                var collumn = row[_jj];
+                                cmd = {
+                                    col : 'article',
+                                    sect : collumn,
+                                    callbackObj : cmd,
+                                    run :function(){
+                                        var that = this;
+                                        dao.findOne(this.col, {_id:this.sect.dataId}, function(err, doc){
+                                            if(err){
+                                                verbose && console.log('fail to load navigation');
+                                            }else{
+                                                that.sect.data = doc;
+                                            }
+                                            that.callbackObj.run.apply(that.callbackObj);
+                                        });
+                                    }
+                                };
+                            }
+                        }
+                    }
                     break;
                 }
             }

@@ -1,0 +1,15 @@
+<%if(item){%>
+<div class="hero-unit">
+    <%var tag = "h"+(item.level?item.level:3);%>
+    <%if(item.label){%><<%=tag%>><%-item.label%></<%=tag%>><%}%>
+    <%if(item.desc){%><p><%-item.desc%></p><%}%>
+    <%if(item.btn){%>
+    <p><a class="btn 
+          <%=item.btn.style?"btn-"+item.btn.style:""%>
+          <%=item.btn.size?"btn-"+item.btn.size:""%>
+       " href="<%item.btn.url?item.btn.url:"#"%>">
+          <%=item.btn.label%>
+       </a></p>
+    <%}%>
+</div>
+<%}%>

@@ -1,5 +1,5 @@
 exports.index =  {
-    path: '/',
+    path: '/home',
     method: 'get',
     before: function(req, res, next){
         //res.send("Before <br>");
@@ -144,7 +144,7 @@ exports.index =  {
             ]
         });
         var body = uiFactory.create('layout', {
-            fluid: 0,
+            config:{fluid: 0},
             body: table.html
         });
         html.push(body.html);

@@ -3,12 +3,14 @@
  * 
  */
 
-var uiMap = {
+var postRenderMap = {
     menu:{
-        postRender:''
+        file:'',
+        func:'$(".dropdown-toggle").dropdown();'
     },
-    navibar:{
-        postRender:''
+    carousel:{
+        file:'',
+        func:'$(".carousel").carousel();'
     }
 };
 
@@ -25,4 +27,28 @@ exports.create = function(name, options){
         uiId:options.uiId,
         html: ejs.render(html, options)
     };
+};
+
+exports.getJsDeps = function(page){
+    var jsSet = {};
+    var result = [];
+    if(page&&page.structure){
+        for(var i=0;i<page.structure.length;i++){
+            var sect = page.structure[i];
+            switch(sect.ui){
+                case 'navibar':
+                case 'navi':
+                case 'menu':
+                jsSet['menu'] = 1;
+                break;
+                case 'carousel':
+                jsSet['carousel'] = 1;
+                break;
+            }
+        }
+    }
+    for(var k in jsSet){
+        result.push(postRenderMap[k].func);
+    }
+    return result.join('\n');
 };

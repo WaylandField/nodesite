@@ -14,6 +14,8 @@ app.use(function(err, req, res, next){
     res.send(500, "Expected Error, Please send error messages to admin");
 });
 
+//app.use(express.cookieSession());
+
 //app.engine('ejs', require('ejs').renderFile);
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
@@ -23,7 +25,6 @@ i18n.configure({
     locales:['zh', 'en'],
     defaultLocale: 'zh'
 });
-
-app.listen(3000);
-
-console.log("server started");
+require('./dynamicPage')(app, {verbose:true});
+//start server is moved to dynamic page loading call back
+//app.listen(3000);

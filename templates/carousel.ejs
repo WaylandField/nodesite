@@ -1,0 +1,28 @@
+<!--Carousel Goes Here-->
+<%if(items&&items.length){%>
+<div id="<%=uiId%>" class="carousel slide">
+  <ol class="carousel-indicators">
+  <%for(var k =0;k<items.length;k++){%>
+    <li data-target="#<%=uiId%>" data-slide-to="<%=k%>" class="<%=k===0?'active':''%>"></li>
+  <%}%>
+  </ol>
+  <!-- Carousel items -->
+  <div class="carousel-inner">
+    <%for(var k =0;k<items.length;k++){%>
+    <div class="<%=k===0?'active ':''%> item">
+      <div class="item active">
+        <img alt="" src="<%=items[k].src%>">
+            <div class="carousel-caption">
+               <h4><%=items[k].title%></h4>
+               <p><%=items[k].desc%></p>
+            </div>
+      </div>
+    </div>
+    <%}%>
+  </div>
+  <!-- Carousel nav -->
+  <a class="carousel-control left" href="#<%=uiId%>" data-slide="prev">&lsaquo;</a>
+  <a class="carousel-control right" href="#<%=uiId%>" data-slide="next">&rsaquo;</a>
+</div>
+<%}%>
+<!--Carousel Ends Here-->

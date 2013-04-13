@@ -40,7 +40,7 @@
 .grid-title{
 
 }
-.grid-title { border-bottom:2px dashed gray; height:24px; width:100%; }
+.grid-title { border-bottom:2px dashed gray; height:24px; width:100%; margin-bottom:30px}
 .grid-title h3 { 
     margin:0 auto; 
     padding:8px 0; 

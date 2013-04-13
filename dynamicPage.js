@@ -9,11 +9,11 @@ module.exports = function(app, verbose){
             var html = [];
             for(var i=0;i<page.structure.length;i++){
                 var sect = page.structure[i];
-                verbose && console.log(sect.id);
+                verbose && console.log("render UI : "+sect.ui);
                 switch(sect.ui){
                 case 'navibar':
                     html.push(uiFactory.create('navibar',{
-                        config:sect.config,
+                        config:sect.config?sect.config:{},
                         items:sect.data
                     }).html);
                     break;
@@ -31,8 +31,7 @@ module.exports = function(app, verbose){
                             for(var _ii in row){
                                 var column = row[_ii];
                                 column.body = uiFactory.create(column.ui?column.ui:'simple',{
-                                    config:{
-                                    },
+                                    config:column.config?column.config:{},
                                     item: column.data
                                 }).html;
                             }

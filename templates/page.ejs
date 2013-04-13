@@ -11,7 +11,7 @@
 
     <!-- Le styles -->
     <link href="/web/css/bootstrap.css" rel="stylesheet">
-    <link href="/web/css/responsive.css" rel="stylesheet">
+    <!--<link href="/web/css/responsive.css" rel="stylesheet">-->
     <link href="/web/css/custom.css" rel="stylesheet">
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
@@ -29,15 +29,7 @@
   </head>
 
 <body data-spy="scroll" class="<%=config.css?config.css:""%>" data-target=".bs-docs-sidebar">
-<%-header%>
-<div class="
-     <%=config.container?'container':''%>
-     <%=(config.fluid)?"container-fluid":""%>
-     <%=(config.narrow)?"container-narrow":""%>
-">
 <%-body%>
-</div>
-<%-footer%>
 <script language="javascript">
   $(document).ready(function() {
   <%-jsFuncs%>

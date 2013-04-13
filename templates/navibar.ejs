@@ -15,6 +15,8 @@
 </ul>
 <%}%>
 
+<%if(config.css){%><div class="<%=config.css%>"><%}%>
+<%if(config.container){%><div class="container"><%}%>
 <div id="<%=uiId%>" class="navbar
      <%=config.fixedTop?"navbar-fixed-top":""%>
      <%=config.fixedBottom?"navbar-fixed-bottom":""%>
@@ -23,17 +25,16 @@
      <%=config.inverse?"navbar-inverse":""%>
      ">
     <div class="navbar-inner">
-    <div class="
-       <%=config.container?config.container:""%>
-    ">
+    <%if(config.innerContainer){%><div class="container"><%}%>
     <%if(config.brand){%>
-        <a class="brand" href="#"><%=config.brand%></a>        
+        <a class="brand" href="#"><%-config.brand%></a>        
     <%}%>
     <ul class="nav 
     <%if(config.list){%>nav-list<%}%>
     <%if(config.tab){%>nav-tabs<%}%>
     <%if(config.pill){%>nav-pills<%}%>
     <%if(config.stacked){%>nav-stacked<%}%>
+    <%if(config.right){%>pull-right<%}%>
     ">
 <%if(items&&items.length){
     items.forEach(function(item){%>
@@ -59,6 +60,8 @@
        <%}});
        }%>
     </ul> 
-    </div>
+    <%if(config.innerContainer){%></div><%}%>
     </div>
 </div>
+<%if(config.container){%></div><%}%>
+<%if(config.css){%></div><%}%>

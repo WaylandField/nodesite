@@ -13,28 +13,13 @@ module.exports = function(app, verbose){
                 switch(sect.ui){
                 case 'navibar':
                     html.push(uiFactory.create('navibar',{
-                        config:{
-                            brand: "Brand",
-                            container: "container",
-                            fixedTop:1,
-                            inverse:1,
-                            pill:1
-                        },
+                        config:sect.config,
                         items:sect.data
                     }).html);
-/**                    html.push(uiFactory.create('navibar',{
-                        config:{
-                            brand: "Brand",
-                            container: "container",
-                            pill:1
-                        },
-                        items:sect.data
-                    }).html);**/
                     break;
                 case 'carousel':
                     html.push(uiFactory.create('carousel',{
-                        config:{
-                        },
+                        config:sect.config?sect.config:{},
                         items: sect.data
                     }).html);
                     break;
@@ -45,7 +30,7 @@ module.exports = function(app, verbose){
                             var row = rows[_i];
                             for(var _ii in row){
                                 var column = row[_ii];
-                                column.body = uiFactory.create('hero',{
+                                column.body = uiFactory.create(column.ui?column.ui:'simple',{
                                     config:{
                                     },
                                     item: column.data
@@ -54,8 +39,7 @@ module.exports = function(app, verbose){
                         }
                     }
                     html.push(uiFactory.create('grid',{
-                        config:{
-                        },
+                        config:sect.config?sect.config:{},
                         rows: sect.rows
                     }).html);
                     break;
@@ -66,9 +50,7 @@ module.exports = function(app, verbose){
             var jsFuncs = uiFactory.getJsDeps(page);
             var ui = uiFactory.create('page', {
                 title : page.label,
-                header: page.header,
                 body: html.join('\n'),
-                footer:page.footer,
                 jsFuncs:jsFuncs,
                 description:page.label,
                 config: page.config
@@ -103,11 +85,11 @@ module.exports = function(app, verbose){
                         callbackObj : cmd1,
                         run :function(){
                             var that = this;
-                            dao.find(this.col, {}, function(err, docs){
+                            dao.findOne(this.col, {'_id':this.sect.dataId}, function(err, doc){
                                 if(err){
                                     verbose && console.log('fail to load navigation');
                                 }else{
-                                    that.sect.data = docs;
+                                    that.sect.data = doc.items;
                                 }
                                 that.callbackObj.run.apply(that.callbackObj);
                             });

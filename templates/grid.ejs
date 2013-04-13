@@ -1,4 +1,7 @@
-<% if (rows.length) { 
+<% if (rows.length) { %>
+<%if(config.css){%><div class="<%=config.css%>"><%}%>
+<%if(config.container){%><div class="container">
+<%}
    rows.forEach(function(columns){ %>
    <div id="<%=uiId%>"  class="row<%if(config.fluid){%>-fluid<%}%>">
         <% columns.forEach(function(col){%>
@@ -9,5 +12,7 @@
            "><%-col.body%></div>
         <%});%>
    </div>
-<%});
-}%>
+<%});%>
+<%if(config.container){%></div><%}%>
+<%if(config.css){%></div><%}%>
+<%}%>

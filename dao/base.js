@@ -36,3 +36,7 @@ exports.findOne = function(collectionId, query, callback){
 exports.getObjectId = function(){
     return db.ObjectId();
 };
+
+exports.close = function(){
+    db.close();
+};

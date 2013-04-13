@@ -5,12 +5,13 @@ var carouselId = dao.getObjectId();
 var step1 = dao.getObjectId();
 var step2 = dao.getObjectId();
 var step3 = dao.getObjectId();
+var step4 = dao.getObjectId();
 
 var addPage = function(){
 //add pages
 dao.delete('page', {}, function(){
     dao.addNew('page', [
-        {
+        	{
             pageId:'home',
             path:'/',
             label:'home',
@@ -55,6 +56,31 @@ dao.delete('page', {}, function(){
                 }}
                 
             ]
+        },
+        {
+        pageId:'product',
+        path:'/product',
+        lable:'product',
+        config:{
+        	css:'fixed_navi_body'
+        },
+        structure:[
+        	{id:'navi', ui:'navibar', dataId:naviId, config:{
+                    brand1: "<img src=\"/web/img/logo.png\"/><small>Time To Get Faster</small>",
+                    brand: "Algoblu <small>Time To Get Faster</small>",
+                    container: 1,
+                    innerContainer:1,
+                    fixedTop:0,
+                    inverse:0,
+                    right:1
+             }},
+             {id:'steps', ui:'grid', rows:[[
+                    {span:8, dataId: step4},
+                    {span:4, dataId: step2}
+                ]],config:{
+                    container:1
+                }}
+        ]
         }
     ], function(){
         console.log("Add page completed");
@@ -67,7 +93,8 @@ dao.delete('article',{},function(){
     dao.addNew('article', [
         {_id: step1, label:'Step1', desc:"Step1 Desc", btn:{label:'Go', url:'/go', style:'primary', size:'large'}},
         {_id: step2, label:'Step2', desc:"Step2 Desc"},
-        {_id: step3, label:'Step3', desc:"Step3 Desc"}
+        {_id: step3, label:'Step3', desc:"Step3 Desc"},
+        {_id: step4, label:'Product', desc:"<img src=\"/web/img/Compare.png\"/>this is product"}
     ], function(){
         console.log("Add article completed");
         addPage();

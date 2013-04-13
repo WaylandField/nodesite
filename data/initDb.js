@@ -20,7 +20,7 @@ dao.delete('page', {}, function(){
             structure:[
                 {id:'navi', ui:'navibar', dataId:naviId, config:{
                     brand1: "<img src=\"/web/img/logo.png\"/><small>Time To Get Faster</small>",
-                    brand: "Algoblu <small>Time To Get Faster</small>",
+                    brand: "Algoblu Cloud CDN <small>Time To Get Faster</small>",
                     container: 1,
                     innerContainer:1,
                     fixedTop:0,
@@ -31,24 +31,25 @@ dao.delete('page', {}, function(){
                     container:1,
                     css:'container-lead'
                 }},
-                {id:'steps', ui:'grid', rows:[[
-                    {span:4, dataId: step1},
-                    {span:4, dataId: step2},
-                    {span:4, dataId: step3}
+                {id:'steps', ui:'grid', title: 'What We Can Do', rows:[[
+                    {span:4, dataId: step1, config:{level:4}},
+                    {span:4, dataId: step2, config:{level:4}},
+                    {span:4, dataId: step3, config:{level:4}}
                 ]],config:{
                     container:1
                 }},
                 {ui:'grid', rows:[[
-                    {ui:'hero', span:4, dataId: step1},
-                    {ui:'hero', span:4, dataId: step2},
-                    {ui:'hero', span:4, dataId: step3}
+                    {ui:'hero', span:4, dataId: step1, config:{level:4}},
+                    {ui:'hero', span:4, dataId: step2, config:{level:4}},
+                    {ui:'hero', span:4, dataId: step3, config:{level:4}}
                 ]],config:{
                     container:1
                 }},
                 {ui:'grid', rows:[[
-                    {span:4, dataId: step1},
-                    {span:4, dataId: step2},
-                    {span:4, dataId: step3}
+                    {span:3, dataId: step1, config:{level:5}},
+                    {span:3, dataId: step2, config:{level:5}},
+                    {span:3, dataId: step2, config:{level:5}},
+                    {span:3, dataId: step3, config:{level:5}}
                 ]],config:{
                     css:'footer',
                     container:1
@@ -65,9 +66,9 @@ dao.delete('page', {}, function(){
 var addArticle = function(){
 dao.delete('article',{},function(){
     dao.addNew('article', [
-        {_id: step1, label:'Step1', desc:"Step1 Desc", btn:{label:'Go', url:'/go', style:'primary', size:'large'}},
-        {_id: step2, label:'Step2', desc:"Step2 Desc"},
-        {_id: step3, label:'Step3', desc:"Step3 Desc"}
+        {_id: step1, label:'More Powerfull', desc:"With our cloud CDN, we provide full stack CDN services includes HTML and Stream...", btn:{label:'Check this out...', url:'/go', style:'primary', right:1 }},
+        {_id: step2, label:'Much Faster', desc:"Our CDN provides on demand virtual CDN deploying services, which will greatly improve your website access...", btn:{label:'More detail...', url:'/go', style:'success', right:1 }},
+        {_id: step3, label:'Less Fee', desc:"Use our cloud CDN to increase or decrease your virtual server ", btn:{label:'Register today...', url:'/go', style:'info', right:1 }}
     ], function(){
         console.log("Add article completed");
         addPage();

@@ -1,10 +1,10 @@
 <%if(item){%>
 <div class="<=config.css?config.css:''>">
-    <%var tag = "h"+(item.level?item.level:3);%>
+    <%var tag = "h"+(config&&config.level?config.level:3);%>
     <%if(item.label){%><<%=tag%>><%-item.label%></<%=tag%>><%}%>
     <%if(item.desc){%><p><%-item.desc%></p><%}%>
     <%if(item.btn){%>
-    <p><a class="btn 
+    <p class="<%=item.btn.right?"pull-right":""%>"><a class="btn 
           <%=item.btn.style?"btn-"+item.btn.style:""%>
           <%=item.btn.size?"btn-"+item.btn.size:""%>
        " href="<%item.btn.url?item.btn.url:"#"%>">

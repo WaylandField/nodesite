@@ -1,5 +1,8 @@
 $(document).ready(function(){
     var naviBtn = $('#naviBtn');
+    var pageBtn = $("#pageBtn");
+    var carouselBtn = $("#carouselBtn");
+    var articleBtn = $("#articleBtn");
     var mainArea = $('#mainArea');
     var renderJson = function(html, json){
         html.push('<ul>');
@@ -45,7 +48,8 @@ $(document).ready(function(){
         return html.join('');
     };
 
-    var loadNavi = function(){
+    var loadNavi = function(msg){
+    	var temp = msg.substring(1,msg.length);
         $.ajax({dataType:'json', 
                 success: function(data){
                     $('ul.bs-docs-sidenav > li.active').removeClass('active');
@@ -69,7 +73,7 @@ $(document).ready(function(){
                     });
 
                 },
-                url:'/api/navi'
+                url:'/api/'+temp
                });
     };
 
@@ -85,5 +89,8 @@ $(document).ready(function(){
         });
     };
 
-    naviBtn.click(loadNavi);
+    naviBtn.click(loadNavi(naviBtn.attr('href')));
+    pageBtn.click(loadNavi(pageBtn.attr('href')));
+    carouselBtn.click(loadNavi(carouselBtn.attr('href')));
+    articleBtn.click(loadNavi(articleBtn.attr('href')));
 });

@@ -33,12 +33,12 @@ dao.delete('page', {}, function(){
                     container:1,
                     css:'container-lead'
                 }},
-                {id:'steps', ui:'grid', title: 'What We Can Do', rows:[[
+                {id:'steps', ui:'grid', rows:[[
                     {span:4, dataId: step1, config:{level:4}},
                     {span:4, dataId: step2, config:{level:4}},
                     {span:4, dataId: step3, config:{level:4}}
                 ]],config:{
-                    container:1
+                    container:1, title: 'What We Can Do'
                 }},
                 {ui:'grid', rows:[[
                     {ui:'hero', span:4, dataId: step1, config:{level:4}},
@@ -309,6 +309,7 @@ dao.delete('article',{},function(){
         {_id: step1, label:'More Powerfull', desc:"With our cloud CDN, we provide full stack CDN services includes HTML and Stream...", btn:{label:'Check this out...', url:'/go', style:'primary', right:1 }},
         {_id: step2, label:'Much Faster', desc:"Our CDN provides on demand virtual CDN deploying services, which will greatly improve your website access...", btn:{label:'More detail...', url:'/go', style:'success', right:1 }},
         {_id: step3, label:'Less Fee', desc:"Use our cloud CDN to increase or decrease your virtual server ", btn:{label:'Register today...', url:'/go', style:'info', right:1 }},
+        {_id: step3, label:'Less Fee', desc:"Use our cloud CDN to increase or decrease your virtual server ", btn:{label:'Register today...', url:'/go', style:'info', right:1 }},
         {_id: step4, label:'Product', desc:"<img src=\"/web/img/Compare.png\"/>this is product"},
         {_id: footstep1, label:'whate is cloud CDN', desc:"Use our cloud CDN to increase or decrease your virtual server ", btn:{label:'Register today...', url:'/go', style:'info', right:1 }}
     ], function(){
@@ -323,8 +324,8 @@ dao.delete('carousel',{}, function(){
     dao.addNew('carousel', [
         {_id: carouselId, 
          items:[
-            {title:'Cloud VPN Structure', desc:'This is our core product', src:'/web/img/cloudVpnStru.png'},
-            {title:'Cloud VPN Logic', desc:'This is our core product', src:'/web/img/cloudVpnTopo.png'}
+            {src:'/web/img/cloudVpnStru.png'},
+            {src:'/web/img/cloudVpnTopo.png'}
         ]}
     ], function(){
         console.log("Add carousel completed");

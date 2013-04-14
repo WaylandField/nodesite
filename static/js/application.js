@@ -1,156 +1,87 @@
-// NOTICE!! DO NOT USE ANY OF THIS JAVASCRIPT
-// IT'S ALL JUST JUNK FOR OUR DOCS!
-// ++++++++++++++++++++++++++++++++++++++++++
-
-!function ($) {
-
-  $(function(){
-
-    var $window = $(window)
-
-    // Disable certain links in docs
-    $('section [href^=#]').click(function (e) {
-      e.preventDefault()
-    })
-
-    // side bar
-    setTimeout(function () {
-      $('.bs-docs-sidenav').affix({
-        offset: {
-          top: function () { return $window.width() <= 980 ? 290 : 210 }
-        , bottom: 270
+$(document).ready(function(){
+    var naviBtn = $('#naviBtn');
+    var mainArea = $('#mainArea');
+    var renderJson = function(html, json){
+        html.push('<ul>');
+        for(var k in json){
+            var attr = json[k];
+            switch(typeof attr){
+                case 'number':
+                case 'string':
+                case 'boolean':
+                html.push('<li>',k," -- ",attr,'</li>');
+                break;
+                case 'object':
+                html.push('<li>',k);
+                renderJson(html, attr);
+                html.push('</li>');
+                break;
+            }
         }
-      })
-    }, 100)
+        html.push('</ul>');
+    };
 
-    // make code pretty
-    window.prettyPrint && prettyPrint()
+    var createTab = function(tabId, items){
+        var tabs = [], contents=[];
+        tabs.push('<ul class="nav nav-tabs" id="',tabId,'">');
+        contents.push('<div class="tab-content" id="myTabContent">');
+        for(var k in items){
+            var item = items[k];
+            tabs.push('<li class=""><a data-toggle="tab" href="#',item.id,'">',item.label,'</a></li>');
+            contents.push('<div id="',item.id,'" class="tab-pane fade"><p>',item.content,'</p></div>');
+            
+        }
+        tabs.push('</ul>');
+        contents.push('</div>');
+        return tabs.join('')+contents.join('');
+    };
 
-    // add-ons
-    $('.add-on :checkbox').on('click', function () {
-      var $this = $(this)
-        , method = $this.attr('checked') ? 'addClass' : 'removeClass'
-      $(this).parents('.add-on')[method]('active')
-    })
+    var createEditor = function(json){
+        var html = [];
+        html.push('<div><textarea name="jsonEditor" id="editor" class="span10">');
+        html.push(JSON.stringify(json));
+        html.push('</textarea></div>');
+        html.push('<button type="button" id="saveBtn" class="btn btn-primary" data-loading-text="Loading...">Save</button>');
+        return html.join('');
+    };
 
-    // add tipsies to grid for scaffolding
-    if ($('#gridSystem').length) {
-      $('#gridSystem').tooltip({
-          selector: '.show-grid > [class*="span"]'
-        , title: function () { return $(this).width() + 'px' }
-      })
-    }
+    var loadNavi = function(){
+        $.ajax({dataType:'json', 
+                success: function(data){
+                    $('ul.bs-docs-sidenav > li.active').removeClass('active');
+                    naviBtn.parent().addClass('active');
+                    var html = [];
+                    var tabId = 'editorTab';
+                    renderJson(html, data);
+                    mainArea.html(createTab(tabId, [
+                        {id:'view', label:'view' ,content:html.join('')},
+                        {id:'edit', label:'edit', content:createEditor(data)}]));
+                    
+                    $('#'+tabId+' a').click(function (e) {
+                        e.preventDefault();
+                        $(this).tab('show');
+                        $('#'+tabId+' a:first').tab('show'); // Select first tab
+                    });
+                    
+                    $('#saveBtn').click(function(){
+                        saveNavi($('#editor').value);
+                    });
 
-    // tooltip demo
-    $('.tooltip-demo').tooltip({
-      selector: "a[data-toggle=tooltip]"
-    })
+                },
+                url:'/api/navi'
+               });
+    };
 
-    $('.tooltip-test').tooltip()
-    $('.popover-test').popover()
+    var saveNavi = function(data){
+        $.ajax({
+            data:data,
+            type:'post',
+            success: function(data){
+                alert(data);
+            },
+            url:'/api/navi'
+        });
+    };
 
-    // popover demo
-    $("a[data-toggle=popover]")
-      .popover()
-      .click(function(e) {
-        e.preventDefault()
-      })
-
-    // button state demo
-    $('#fat-btn')
-      .click(function () {
-        var btn = $(this)
-        btn.button('loading')
-        setTimeout(function () {
-          btn.button('reset')
-        }, 3000)
-      })
-
-    // carousel demo
-    $('#myCarousel').carousel()
-
-    // javascript build logic
-    var inputsComponent = $("#components.download input")
-      , inputsPlugin = $("#plugins.download input")
-      , inputsVariables = $("#variables.download input")
-
-    // toggle all plugin checkboxes
-    $('#components.download .toggle-all').on('click', function (e) {
-      e.preventDefault()
-      inputsComponent.attr('checked', !inputsComponent.is(':checked'))
-    })
-
-    $('#plugins.download .toggle-all').on('click', function (e) {
-      e.preventDefault()
-      inputsPlugin.attr('checked', !inputsPlugin.is(':checked'))
-    })
-
-    $('#variables.download .toggle-all').on('click', function (e) {
-      e.preventDefault()
-      inputsVariables.val('')
-    })
-
-    // request built javascript
-    $('.download-btn .btn').on('click', function () {
-
-      var css = $("#components.download input:checked")
-            .map(function () { return this.value })
-            .toArray()
-        , js = $("#plugins.download input:checked")
-            .map(function () { return this.value })
-            .toArray()
-        , vars = {}
-        , img = ['glyphicons-halflings.png', 'glyphicons-halflings-white.png']
-
-    $("#variables.download input")
-      .each(function () {
-        $(this).val() && (vars[ $(this).prev().text() ] = $(this).val())
-      })
-
-      $.ajax({
-        type: 'POST'
-      , url: /\?dev/.test(window.location) ? 'http://localhost:3000' : 'http://bootstrap.herokuapp.com'
-      , dataType: 'jsonpi'
-      , params: {
-          js: js
-        , css: css
-        , vars: vars
-        , img: img
-      }
-      })
-    })
-  })
-
-// Modified from the original jsonpi https://github.com/benvinegar/jquery-jsonpi
-$.ajaxTransport('jsonpi', function(opts, originalOptions, jqXHR) {
-  var url = opts.url;
-
-  return {
-    send: function(_, completeCallback) {
-      var name = 'jQuery_iframe_' + jQuery.now()
-        , iframe, form
-
-      iframe = $('<iframe>')
-        .attr('name', name)
-        .appendTo('head')
-
-      form = $('<form>')
-        .attr('method', opts.type) // GET or POST
-        .attr('action', url)
-        .attr('target', name)
-
-      $.each(opts.params, function(k, v) {
-
-        $('<input>')
-          .attr('type', 'hidden')
-          .attr('name', k)
-          .attr('value', typeof v == 'string' ? v : JSON.stringify(v))
-          .appendTo(form)
-      })
-
-      form.appendTo('body').submit()
-    }
-  }
-})
-
-}(window.jQuery)
+    naviBtn.click(loadNavi);
+});

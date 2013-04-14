@@ -13,10 +13,12 @@
     <%for(var k =0;k<items.length;k++){%>
     <div class="<%=k===0?'active ':''%> item">
         <img alt="" src="<%=items[k].src%>">
+        <%if(items[k].title||items[k].desc){%>
             <div class="carousel-caption">
                <h4><%=items[k].title%></h4>
                <p><%=items[k].desc%></p>
             </div>
+            <%}%>
     </div>
     <%}%>
   </div>

@@ -1,0 +1,21 @@
+<%if(err){%>
+<div class="alert">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <strong>Warning!</strong> Your username & password not match.
+</div>
+<%}%>
+<form action="<%=config.action%>" method="post">
+      <%for(var i=0;i<items.length;i++){
+      var item = items[i];
+      %>
+      <div class="row">
+           <%if(item.type!=='submit'){%>
+           <div class="span4"><label><%=item.label%></label></div>
+           <div class="span4"><input name="<%=item.id%>" type="<%=item.type%>"></div>
+           <div class="span4"></div>
+           <%}else{%>
+           <div class="offset4 span4"><input type="submit" value="<%=item.label%>"/></div>
+           <%}%>
+      </div>
+      <%}%>
+</form>

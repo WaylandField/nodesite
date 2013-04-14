@@ -4,7 +4,10 @@ var i18n = require("i18n");
 app.use('/web', express.static(__dirname+'/static'));
 
 app.use(express.bodyParser());
-app.use(app.router);
+app.use(express.cookieParser('shhhh, very secret'));
+app.use(express.session());
+
+//app.use(app.router);
 app.use(express.logger());
 app.use(express.logger({format:':method :url'}));
 
@@ -13,8 +16,6 @@ app.use(function(err, req, res, next){
     res.send(err.stack);
     res.send(500, "Expected Error, Please send error messages to admin");
 });
-
-//app.use(express.cookieSession());
 
 //app.engine('ejs', require('ejs').renderFile);
 app.set('view engine', 'ejs');

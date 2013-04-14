@@ -60,8 +60,8 @@ $(document).ready(function(){
                     $('#'+tabId+' a').click(function (e) {
                         e.preventDefault();
                         $(this).tab('show');
-                        $('#'+tabId+' a:first').tab('show'); // Select first tab
                     });
+                    $('#'+tabId+' a:first').tab('show'); // Select first tab
                     
                     $('#saveBtn').click(function(){
                         saveNavi($('#editor').value);

@@ -14,6 +14,17 @@ exports.update = function(collectionId, query, object, callback){
     }, callback);
 };
 
+exports.updateMulti = function(collectionId, objects, callback){
+    var collection = db.collection(collectionId);
+    for(var k in objects){
+     collection.findAndModify({
+        query: {_id:objects[k]._id}, 
+        update: { $set: object },
+        new: false
+     });
+    }
+};
+
 exports.delete = function(collectionId, query, callback){
     var collection = db.collection(collectionId);
     collection.remove(query, callback);

@@ -6,7 +6,6 @@ var step1 = dao.getObjectId();
 var step2 = dao.getObjectId();
 var step3 = dao.getObjectId();
 var step4 = dao.getObjectId();
-
 var footstep1 = dao.getObjectId();
 
 var thumb1 = dao.getObjectId();
@@ -17,12 +16,12 @@ var addPage = function(){
 //add pages
 dao.delete('page', {}, function(){
     dao.addNew('page', [
-        {
+        	{
             pageId:'home',
             path:'/',
             label:'home',
             config:{
-                 css:'fixed_navi_body'
+                 css:'no_fixed_navi_body'
                 },
             structure:[
                 {id:'navi', ui:'navibar', dataId:naviId, config:{
@@ -30,20 +29,13 @@ dao.delete('page', {}, function(){
                     brand: "Algoblu Cloud CDN <small>Time To Get Faster</small>",
                     container: 1,
                     innerContainer:1,
-                    fixedTop:1,
-                    inverse:1,
+                    fixedTop:0,
+                    inverse:0,
                     right:1
                 }},
                 {id:'carousel', ui:'carousel', dataId:carouselId, config:{
                     container:1,
                     css:'container-lead'
-                }},
-                {ui:'thumbnails', row:[
-                    {dataId: thumb1, config:{span:4}},
-                    {dataId: thumb2, config:{span:4}},
-                    {dataId: thumb3, config:{span:4}}
-                ],config:{
-                    container:1, title: 'What We Can Do'
                 }},
                 {id:'steps', ui:'grid', rows:[[
                     {span:4, dataId: step1, config:{level:4}},
@@ -52,14 +44,20 @@ dao.delete('page', {}, function(){
                 ]],config:{
                     container:1, title: 'What We Can Do'
                 }},
+                {ui:'thumbnails', rows:[[
+                    {span:4, dataId: thumb1, config:{level:4}},
+                    {span:4, dataId: thumb2, config:{level:4}},
+                    {span:4, dataId: thumb3, config:{level:4}}
+                ]],config:{
+                    container:1
+                }},
                 {ui:'grid', rows:[[
                     {span:3, dataId: step1, config:{level:5}},
                     {span:3, dataId: step2, config:{level:5}},
                     {span:3, dataId: step2, config:{level:5}},
                     {span:3, dataId: step3, config:{level:5}}
                 ]],config:{
-                    css:'footer',
-                    container:1
+                    css:'footer'
                 }}
                 
             ]
@@ -69,7 +67,7 @@ dao.delete('page', {}, function(){
         path:'/product',
         label:'product',
         config:{
-        	css:'no_fixed_navi_body'
+        	css:'fixed_navi_body'
         },
         structure:[
         	{id:'navi', ui:'navibar', dataId:naviId, config:{
@@ -103,7 +101,7 @@ dao.delete('page', {}, function(){
         path:'/solution',
         label:'solution',
         config:{
-        	css:'no_fixed_navi_body'
+        	css:'fixed_navi_body'
         },
          structure:[
         	{id:'navi', ui:'navibar', dataId:naviId, config:{
@@ -137,7 +135,7 @@ dao.delete('page', {}, function(){
         path:'/customer',
         label:'customer',
         config:{
-        	css:'no_fixed_navi_body'
+        	css:'fixed_navi_body'
         },
          structure:[
         	{id:'navi', ui:'navibar', dataId:naviId, config:{
@@ -151,7 +149,7 @@ dao.delete('page', {}, function(){
              }},
              {ui:'grid', rows:[[
                     {ui:'hero', span:8, dataId: step1, config:{level:4}},
-                    {ui:'hero', span:4, dataId: step2, config:{level:4}}
+                    {ui:'hero', span:4, dataId: step2, config:{level:4}},
                 ]],config:{
                     container:1
                 }},
@@ -171,7 +169,7 @@ dao.delete('page', {}, function(){
         path:'/product1',
         label:'product1',
         config:{
-        	css:'no_fixed_navi_body'
+        	css:'fixed_navi_body'
         },
          structure:[
         	{id:'navi', ui:'navibar', dataId:naviId, config:{
@@ -205,7 +203,7 @@ dao.delete('page', {}, function(){
         path:'/prod2',
         label:'product2',
         config:{
-        	css:'no_fixed_navi_body'
+        	css:'fixed_navi_body'
         },
          structure:[
         	{id:'navi', ui:'navibar', dataId:naviId, config:{
@@ -239,7 +237,7 @@ dao.delete('page', {}, function(){
         path:'/partner',
         label:'partner',
         config:{
-        	css:'no_fixed_navi_body'
+        	css:'fixed_navi_body'
         },
          structure:[
         	{id:'navi', ui:'navibar', dataId:naviId, config:{
@@ -273,7 +271,7 @@ dao.delete('page', {}, function(){
         path:'/about',
         label:'about',
         config:{
-        	css:'no_fixed_navi_body'
+        	css:'fixed_navi_body'
         },
          structure:[
         	{id:'navi', ui:'navibar', dataId:naviId, config:{
@@ -311,14 +309,19 @@ dao.delete('page', {}, function(){
 var addArticle = function(){
 dao.delete('article',{},function(){
     dao.addNew('article', [
-        {_id: thumb1, src:'/web/img/dollar.png', url:'/...', alt:'Powerful', caption:{label:'More Powerful', desc:"With our cloud CDN, we provide full stack CDN services includes HTML and Stream...", btn:{label:'Check this out...', url:'/go', style:'primary' }}},
-        {_id: thumb2, src:'/web/img/rocket.png', url:'/...', alt:'Faster', caption:{label:'Much Faster', desc:"Our CDN provides on demand virtual CDN deploying services, which will greatly improve your website access...", btn:{label:'More detail...', url:'/go', style:'success' }}},
-        {_id: thumb3, src:'/web/img/dollar.png', url:'/...', alt:'Cheaper',caption: {label:'Less Fee', desc:"With our cloud CDN, only increase the virutal severs when needed, this will cut unesscessray cost...", btn:{label:'Register today...', url:'/go', style:'info'}}},
-        {_id: step1, label:'More Powerfull', desc:"With our cloud CDN, we provide full stack CDN services includes HTML and Stream...", btn:{label:'Check this out...', url:'/go', style:'primary', right:1 }},
+        {_id: step1, src:'', label:'More Powerfull', desc:"With our cloud CDN, we provide full stack CDN services includes HTML and Stream...", btn:{label:'Check this out...', url:'/go', style:'primary', right:1 }},
         {_id: step2, label:'Much Faster', desc:"Our CDN provides on demand virtual CDN deploying services, which will greatly improve your website access...", btn:{label:'More detail...', url:'/go', style:'success', right:1 }},
+<<<<<<< HEAD
+        {_id: step3, label:'Less Fee', desc:"Use our cloud CDN to increase or decrease your virtual server will cut all uneccessary cost... ", btn:{label:'Register today...', url:'/go', style:'info', right:1 }},
+        {_id: thumb1, src:'', url:'', label:'More Powerfull', desc:"With our cloud CDN, we provide full stack CDN services includes HTML and Stream...", btn:{label:'Check this out...', url:'/go', style:'primary', right:1 }},
+        {_id: thumb2, src:'', url:'', label:'Much Faster', desc:"Our CDN provides on demand virtual CDN deploying services, which will greatly improve your website access...", btn:{label:'More detail...', url:'/go', style:'success', right:1 }},
+        {_id: thumb3, src:'', url:'', label:'Less Fee', desc:"Use our cloud CDN to increase or decrease your virtual server will cut all uneccessary cost... ", btn:{label:'Register today...', url:'/go', style:'info', right:1 }}
+=======
+        {_id: step3, label:'Less Fee', desc:"Use our cloud CDN to increase or decrease your virtual server ", btn:{label:'Register today...', url:'/go', style:'info', right:1 }},
         {_id: step3, label:'Less Fee', desc:"Use our cloud CDN to increase or decrease your virtual server ", btn:{label:'Register today...', url:'/go', style:'info', right:1 }},
         {_id: step4, label:'Product', desc:"<img src=\"/web/img/Compare.png\"/>this is product"},
         {_id: footstep1, label:'whate is cloud CDN', desc:"Use our cloud CDN to increase or decrease your virtual server ", btn:{label:'Register today...', url:'/go', style:'info', right:1 }}
+>>>>>>> 758821f57466716d9c799e4de276bf735437fe58
     ], function(){
         console.log("Add article completed");
         addPage();

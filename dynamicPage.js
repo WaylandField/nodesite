@@ -13,10 +13,15 @@ module.exports = function(app, verbose){
                 switch(sect.ui){
                 case 'navibar':
                 case 'carousel':
-                case 'thumbnails':
                     html.push(uiFactory.create(sect.ui,{
                         config:sect.config?sect.config:{},
                         items: sect.data
+                    }).html);
+                    break;
+                case 'thumbnails':
+                    html.push(uiFactory.create(sect.ui,{
+                        config:sect.config?sect.config:{},
+                        row: sect.row
                     }).html);
                     break;
                 case 'grid':
@@ -109,8 +114,8 @@ module.exports = function(app, verbose){
                         }
                     };
                     break;
+
                 case 'grid':
-                case 'thumbnails':
                     var rows = sect.rows;
                     if(rows){
                         for(var j=0;j<rows.length;j++){
@@ -138,6 +143,29 @@ module.exports = function(app, verbose){
                     }
                     break;
                 case 'thumbnails':
+                    var row = sect.row;
+                    if(row){
+                        for(var _jj=0;_jj<row.length;_jj++){
+                            var collumn = row[_jj];
+                            cmd = {
+                                col : 'article',
+                                sect : collumn,
+                                callbackObj : cmd,
+                                run :function(){
+                                    var that = this;
+                                    dao.findOne(this.col, {_id:this.sect.dataId}, function(err, doc){
+                                        if(err){
+                                            verbose && console.log('fail to load navigation');
+                                        }else{
+                                            that.sect.data = doc;
+                                        }
+                                        that.callbackObj.run.apply(that.callbackObj);
+                                    });
+                                }
+                            };
+                          }
+                        }
+                    break;
                 }
             }
             verbose && console.log(cmd);

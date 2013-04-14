@@ -19,7 +19,7 @@ exports.updateMulti = function(collectionId, objects, callback){
     for(var k in objects){
      collection.findAndModify({
         query: {_id:objects[k]._id}, 
-        update: { $set: object },
+        update: { $set: objects[k] },
         new: false
      });
     }

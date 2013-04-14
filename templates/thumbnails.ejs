@@ -1,22 +1,41 @@
-<%var thumbTag = "div";%>
+<%if(config.container){%><div class="container"><%}%>
+
+<%if(config.title){%>
+<div class="grid-title">
+<h3><%-config.title%></h3>
+</div>
+<%}%>
+
 <ul id="<%=uiId%>" class="thumbnails">
-    <%if(items&&items.length){
-        items.forEach(function(item){
+    <%if(row&&row.length){
+        row.forEach(function(column){
+            var item = column.data;
             if(item.url){
                 thumbTag = "a";
             }%>
-    <li class="<%=item.span?"span"+item.span:""%>">
-    <<%=thumbTag%> <%=item.url?'href="'+item.url+'"':''%> class="thumbnail">
-    <img src="<%=item.src?item.src:""%>" alt="<%=item.label?item.label:""%>">
+    <li class="<%=column.config.span?"span"+column.config.span:""%>">
+    <div <%=item.url?'href="'+item.url+'"':''%> class="thumbnail">
+    <%if(item.url){%><a href="<%=item.url%>"><%}%>
+    <img src="<%=item.src?item.src:""%>" alt="<%=item.alt?item.alt:""%>"/>
+    <%if(item.url){%></a><%}%>
     <%if(item.caption){%>
         <div class="caption">
-             <%if(item.caption.label){%><h3><%=item.caption.title%></h3><%}%>
+             <%if(item.caption.label){%><h3><%=item.caption.label%></h3><%}%>
              <%if(item.caption.desc){%><p><%=item.caption.desc%></p><%}%>
              <%if(item.caption.action){%><p><%=item.caption.action%></p><%}%>
+             <%if(item.caption.btn){%>
+                 <p class="<%=item.caption.btn.right?"pull-right":""%>"><a class="btn 
+                    <%=item.caption.btn.style?"btn-"+item.caption.btn.style:""%>
+                    <%=item.caption.btn.size?"btn-"+item.caption.btn.size:""%>
+                    " href="<%item.caption.btn.url?item.caption.btn.url:"#"%>">
+                    <%=item.caption.btn.label%>
+                   </a></p>
+             <%}%>
         </div>
     <%}%>
-    </<%thumbTag%>>
+    </div>
     </li>
         <%});
     }%>
 </ul>
+<%if(config.container){%></div><%}%>

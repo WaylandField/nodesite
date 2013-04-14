@@ -1,5 +1,5 @@
 .fixed_navi_body{
-    padding-top:40px;
+    padding-top:60px;
 //    padding-bottom:40px;
 }
 .no_fixed_navi_body{
@@ -7,7 +7,6 @@
 //    padding-bottom:40px;
 }
 .container-lead{
-
     background-color:#F4F5F4;
     background-image: -moz-linear-gradient(bottom, #ffffff, #e6e6e6);
     background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#e6e6e6));
@@ -141,3 +140,6 @@
     margin-top:10px;
 }
 
+.thumbnail{
+    text-align:center;
+}

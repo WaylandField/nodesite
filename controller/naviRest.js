@@ -25,6 +25,6 @@ exports.post = {
         next();
     },
     run: function(req, res){
-        console.log(req.body);
+        console.log(req.body.k);
     }
 };

@@ -64,7 +64,8 @@ $(document).ready(function(){
                     });
                     
                     $('#saveBtn').click(function(){
-                        saveNavi($('#editor').value);
+                    	//var json = JSON.parse($('#editor').val());
+                        saveNavi($('#editor').val());
                     });
 
                 },
@@ -73,8 +74,9 @@ $(document).ready(function(){
     };
 
     var saveNavi = function(data){
+    	var json = JSON.parse(data);
         $.ajax({
-            data:data,
+            data:{'k':json},
             type:'post',
             success: function(data){
                 alert(data);

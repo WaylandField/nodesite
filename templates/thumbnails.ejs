@@ -10,7 +10,7 @@
     <img src="<%=item.src?item.src:""%>" alt="<%=item.label?item.label:""%>">
     <%if(item.caption){%>
         <div class="caption">
-             <%if(item.caption.title){%><h3><%=item.caption.title%></h3><%}%>
+             <%if(item.caption.label){%><h3><%=item.caption.title%></h3><%}%>
              <%if(item.caption.desc){%><p><%=item.caption.desc%></p><%}%>
              <%if(item.caption.action){%><p><%=item.caption.action%></p><%}%>
         </div>

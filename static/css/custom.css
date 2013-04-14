@@ -1,4 +1,8 @@
 .fixed_navi_body{
+    padding-top:40px;
+//    padding-bottom:40px;
+}
+.no_fixed_navi_body{
     padding-top:10px;
 //    padding-bottom:40px;
 }

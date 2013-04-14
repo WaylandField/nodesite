@@ -12,13 +12,9 @@ module.exports = function(app, verbose){
                 verbose && console.log("render UI : "+sect.ui);
                 switch(sect.ui){
                 case 'navibar':
-                    html.push(uiFactory.create('navibar',{
-                        config:sect.config?sect.config:{},
-                        items:sect.data
-                    }).html);
-                    break;
                 case 'carousel':
-                    html.push(uiFactory.create('carousel',{
+                case 'thumbnails':
+                    html.push(uiFactory.create(sect.ui,{
                         config:sect.config?sect.config:{},
                         items: sect.data
                     }).html);
@@ -114,6 +110,7 @@ module.exports = function(app, verbose){
                     };
                     break;
                 case 'grid':
+                case 'thumbnails':
                     var rows = sect.rows;
                     if(rows){
                         for(var j=0;j<rows.length;j++){
@@ -140,6 +137,7 @@ module.exports = function(app, verbose){
                         }
                     }
                     break;
+                case 'thumbnails':
                 }
             }
             verbose && console.log(cmd);

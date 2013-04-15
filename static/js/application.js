@@ -12,7 +12,7 @@ $(document).ready(function(){
                 case 'number':
                 case 'string':
                 case 'boolean':
-                html.push('<li>',k," -- ",attr,'</li>');
+                html.push('<li >',k," -- ",attr,'</li>');
                 break;
                 case 'object':
                 html.push('<li>',k);
@@ -49,11 +49,11 @@ $(document).ready(function(){
     };
 
     var loadNavi = function(msg){
-    	var temp = msg.substring(1,msg.length);
+    	var temp = msg.attr("href").substring(1,msg.attr("href").length);
         $.ajax({dataType:'json', 
                 success: function(data){
                     $('ul.bs-docs-sidenav > li.active').removeClass('active');
-                    naviBtn.parent().addClass('active');
+                    msg.parent().addClass('active');
                     var html = [];
                     var tabId = 'editorTab';
                     renderJson(html, data);
@@ -88,9 +88,8 @@ $(document).ready(function(){
             url:'/api/navi'
         });
     };
-
-    naviBtn.click(loadNavi(naviBtn.attr('href')));
-    pageBtn.click(loadNavi(pageBtn.attr('href')));
-    carouselBtn.click(loadNavi(carouselBtn.attr('href')));
-    articleBtn.click(loadNavi(articleBtn.attr('href')));
+    naviBtn.click(function (){loadNavi(naviBtn)});
+    pageBtn.click(function (){loadNavi(pageBtn)});
+    carouselBtn.click(function (){loadNavi(carouselBtn)});
+    articleBtn.click(function (){loadNavi(articleBtn)});
 });

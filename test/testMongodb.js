@@ -40,7 +40,8 @@ dao.delete(test,{},function(err,data){
 dao.addNew(test,{a:1},function(){
 });
 dao.update(test,{b:1},function(){});
-*/
 dao.find(test,{},function(err,data){
 	console.log(data);
 });
+*/
+dao.update("navi",[{"_id":"about","label":"about","url":"/about"}],function(err,docs){});

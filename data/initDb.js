@@ -332,9 +332,9 @@ dao.delete('article',{},function(){
         {_id: step2, label:'Much Faster', desc:"Our CDN provides on demand virtual CDN deploying services, which will greatly improve your website access...", btn:{label:'More detail...', url:'/go', style:'success', right:1 }},
         {_id: step3, label:'Less Fee', desc:"Use our cloud CDN to increase or decrease your virtual server ", btn:{label:'Register today...', url:'/go', style:'info', right:1 }},
         {_id: step4, label:'Product', desc:"<img src=\"/web/img/Compare.png\"/>this is product"},
-        {_id: about, label:'About Us', desc:"Algoblu was started....<hr> Phone: 010-65694176-800<br>Fax: 010-65694176-329<br>Email: support@algoblu.com<br>"},
-        {_id: news, label:'News', desc:"Use our cloud CDN to increase or decrease your virtual server ", btn:{label:'Register today...', url:'/go', style:'info', right:1 }},
-        {_id: follow, label:'Follow Us', desc:"<img src=\"/web/img/Compare.png\"/>this is product"},
+        {_id: about, label:'About Us', desc:"Algoblu was started....<P> Phone: 010-65694176-800<br>Fax: 010-65694176-329<br>Email: support@algoblu.com</p>"},
+        {_id: news, label:'Products & Services', desc:'<a href="#">Cloud CDN</a><br><a href="#">CDN More Product</a>'},
+        {_id: follow, label:'Follow Us', desc:"<img src=\"/web/img/icon-facebook-32.png\"/> <img src=\"/web/img/icon-google-plus-32.png\"/> <img src=\"/web/img/icon-rss-32.png\"/> <img src=\"/web/img/icon-twitter-32.png\"/> <hr>  © 2013 Algoblu. All rights reserved."},
         {_id: footstep1, label:'whate is cloud CDN', desc:"Use our cloud CDN to increase or decrease your virtual server ", btn:{label:'Register today...', url:'/go', style:'info', right:1 }}
     ], function(){
         console.log("Add article completed");

@@ -20,11 +20,7 @@ exports.updateMulti = function(collectionId, objects, callback){
     	var id = objects[k].id;
     	delete objects[k].id;
      collection.findAndModify({
-<<<<<<< HEAD
         query: {"id":objects[k].id}, 
-=======
-        query: {_id:id},
->>>>>>> 095c1c8... 修改后台保存报错
         update: { $set: objects[k] },
         upsert: 1
      }, function(arg1, arg2, arg3, arg4){

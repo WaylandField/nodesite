@@ -107,7 +107,7 @@ module.exports = function(app, verbose){
                                 if(err){
                                     verbose && console.log('fail to load navigation');
                                 }else{
-                                    that.sect.data = doc.items;
+                                   that.sect.data = doc.items;
                                 }
                                 that.callbackObj.run.apply(that.callbackObj);
                             });

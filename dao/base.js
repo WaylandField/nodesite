@@ -18,9 +18,13 @@ exports.updateMulti = function(collectionId, objects, callback){
     var collection = db.collection(collectionId);
     for(var k in objects){
      collection.findAndModify({
-        query: {_id:objects[k]._id}, 
+        query: {"id":objects[k].id}, 
         update: { $set: objects[k] },
-        new: false
+        upsert: 1
+     }, function(arg1, arg2, arg3, arg4){
+         console.log(arg1);
+         console.log(arg2);
+         console.log(arg3);
      });
     }
 };
@@ -44,8 +48,8 @@ exports.findOne = function(collectionId, query, callback){
     });
 };
 
-exports.getObjectId = function(){
-    return db.ObjectId();
+exports.getObjectId = function(id){
+    return id?db.ObjectId(id):db.ObjectId();
 };
 
 exports.close = function(){

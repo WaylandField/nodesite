@@ -348,8 +348,8 @@ dao.delete('carousel',{}, function(){
     dao.addNew('carousel', [
         {_id: carouselId, 
          items:[
-            {src:'/web/img/cloudVpnStru.png'},
-            {src:'/web/img/cloudVpnTopo.png'}
+            {src:'/web/img/cloudVpnStru.png', title:'Full Stack Service Support', desc:'Html, video, audio, image, dynamic content...'},
+            {src:'/web/img/cloudVpnTopo.png', title:'Deployment Optimization', desc:'Make the max use of your cloud resource, and only pay for that you needed...'}
         ]}
     ], function(){
         console.log("Add carousel completed");

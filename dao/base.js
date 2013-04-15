@@ -17,18 +17,15 @@ exports.update = function(collectionId, query, object, callback){
 exports.updateMulti = function(collectionId, objects, callback){
     var collection = db.collection(collectionId);
     for(var k in objects){
-    	var id = objects[k].id;
-    	delete objects[k].id;
      collection.findAndModify({
-        query: {"id":objects[k].id}, 
+        query: {"_id":objects[k].id}, 
         update: { $set: objects[k] },
-        upsert: 1
+        new: 0
      }, function(arg1, arg2, arg3, arg4){
-         console.log(arg1);
-         console.log(arg2);
-         console.log(arg3);
+//         console.log(arg1);
+//         console.log(arg2);
+//         console.log(arg3);
      });
-     break;
     }
 };
 

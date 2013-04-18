@@ -58,7 +58,7 @@ $(document).ready(function(){
         var html = [];
         var action = "/api/"+collection+"/"+json.id;
         html.push('<form method="post" action="'+action+'">');
-        getJsonHtml(html, json, collection);
+        getJsonHtml('', html, json, collection);
         html.push('<button type="button" id="saveBtn" class="btn btn-primary" data-loading-text="Loading...">Save</button></form>');
         mainArea.html(html.join(''));
         $('#saveBtn').click(function(){

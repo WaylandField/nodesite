@@ -121,15 +121,6 @@
   bottom: 270px;
 }
 
-#mainArea li{
-    border-left: 1px dashed silver;
-    border-bottom: 1px dashed silver;
-} 
-
-#mainArea ul{
-    margin-top:10px;
-}
-
 .thumbnail{
     text-align:center;
 }

@@ -1,26 +1,26 @@
 var dao = require('./../dao/base');
-var naviId = dao.getObjectId();
-var quickAccessId = dao.getObjectId();
-var carouselId = dao.getObjectId();
-var step1 = dao.getObjectId();
-var step2 = dao.getObjectId();
-var step3 = dao.getObjectId();
-var step4 = dao.getObjectId();
+var naviId = 'navi';
+var quickAccessId = 'quickAccess';
+var carouselId = "carousel1";
+var step1 = "step1";
+var step2 = "step2";
+var step3 = "step3";
+var step4 = "step4";
 
-var footstep1 = dao.getObjectId();
+var footstep1 = "foot";
 
-var thumb1 = dao.getObjectId();
-var thumb2 = dao.getObjectId();
-var thumb3 = dao.getObjectId();
+var thumb1 = "thumb1";
+var thumb2 = "thumb2";
+var thumb3 = "thum3";
 
-var customer1 = dao.getObjectId();
-var customer2 = dao.getObjectId();
-var customer3 = dao.getObjectId();
-var customer4 = dao.getObjectId();
+var customer1 = "customer1";
+var customer2 = "customer2";
+var customer3 = "customer3";
+var customer4 = "customer4";
 
-var about = dao.getObjectId();
-var follow = dao.getObjectId();
-var news = dao.getObjectId();
+var about = "about";
+var follow = "follow";
+var news = "news";
 
 
 var addPage = function(){
@@ -321,21 +321,21 @@ dao.delete('page', {}, function(){
 var addArticle = function(){
 dao.delete('article',{},function(){
     dao.addNew('article', [
-        {_id: thumb1, src:'/web/img/dollar.png', url:'/...', alt:'Powerful', caption:{label:'More Powerful', desc:"With our cloud CDN, we provide full stack CDN services includes HTML and Stream...", btn:{label:'Check this out...', url:'/go', style:'primary' }}},
-        {_id: thumb2, src:'/web/img/rocket.png', url:'/...', alt:'Faster', caption:{label:'Much Faster', desc:"Our CDN provides on demand virtual CDN deploying services, which will greatly improve your website access...", btn:{label:'More detail...', url:'/go', style:'success' }}},
-        {_id: thumb3, src:'/web/img/dollar.png', url:'/...', alt:'Cheaper',caption: {label:'Less Fee', desc:"With our cloud CDN, only increase the virutal severs when needed, this will cut unesscessray cost...", btn:{label:'Register today...', url:'/go', style:'info'}}},
-        {_id: customer1, src:'/web/upload/customer1.png', url:'/...', alt:'customer1'},
-        {_id: customer2, src:'/web/upload/customer2.png', url:'/...', alt:'Customer2'},
-        {_id: customer3, src:'/web/upload/customer3.png', url:'/...', alt:'Customer3'},
-        {_id: customer4, src:'/web/upload/customer4.png', url:'/...', alt:'Customer4'},
-        {_id: step1, label:'More Powerfull', desc:"With our cloud CDN, we provide full stack CDN services includes HTML and Stream...", btn:{label:'Check this out...', url:'/go', style:'primary', right:1 }},
-        {_id: step2, label:'Much Faster', desc:"Our CDN provides on demand virtual CDN deploying services, which will greatly improve your website access...", btn:{label:'More detail...', url:'/go', style:'success', right:1 }},
-        {_id: step3, label:'Less Fee', desc:"Use our cloud CDN to increase or decrease your virtual server ", btn:{label:'Register today...', url:'/go', style:'info', right:1 }},
-        {_id: step4, label:'Product', desc:"<img src=\"/web/img/Compare.png\"/>this is product"},
-        {_id: about, label:'About Us', desc:"Algoblu was started....<P> Phone: 010-65694176-800<br>Fax: 010-65694176-329<br>Email: support@algoblu.com</p>"},
-        {_id: news, label:'Products & Services', desc:'<a href="#">Cloud CDN</a><br><a href="#">CDN More Product</a>'},
-        {_id: follow, label:'Follow Us', desc:"<img src=\"/web/img/icon-facebook-32.png\"/> <img src=\"/web/img/icon-google-plus-32.png\"/> <img src=\"/web/img/icon-rss-32.png\"/> <img src=\"/web/img/icon-twitter-32.png\"/> <hr>  © 2013 Algoblu. All rights reserved."},
-        {_id: footstep1, label:'whate is cloud CDN', desc:"Use our cloud CDN to increase or decrease your virtual server ", btn:{label:'Register today...', url:'/go', style:'info', right:1 }}
+        {id: thumb1, src:'/web/img/dollar.png', url:'/...', alt:'Powerful', caption:{label:'More Powerful', desc:"With our cloud CDN, we provide full stack CDN services includes HTML and Stream...", btn:{label:'Check this out...', url:'/go', style:'primary' }}},
+        {id: thumb2, src:'/web/img/rocket.png', url:'/...', alt:'Faster', caption:{label:'Much Faster', desc:"Our CDN provides on demand virtual CDN deploying services, which will greatly improve your website access...", btn:{label:'More detail...', url:'/go', style:'success' }}},
+        {id: thumb3, src:'/web/img/dollar.png', url:'/...', alt:'Cheaper',caption: {label:'Less Fee', desc:"With our cloud CDN, only increase the virutal severs when needed, this will cut unesscessray cost...", btn:{label:'Register today...', url:'/go', style:'info'}}},
+        {id: customer1, src:'/web/upload/customer1.png', url:'/...', alt:'customer1'},
+        {id: customer2, src:'/web/upload/customer2.png', url:'/...', alt:'Customer2'},
+        {id: customer3, src:'/web/upload/customer3.png', url:'/...', alt:'Customer3'},
+        {id: customer4, src:'/web/upload/customer4.png', url:'/...', alt:'Customer4'},
+        {id: step1, label:'More Powerfull', desc:"With our cloud CDN, we provide full stack CDN services includes HTML and Stream...", btn:{label:'Check this out...', url:'/go', style:'primary', right:1 }},
+        {id: step2, label:'Much Faster', desc:"Our CDN provides on demand virtual CDN deploying services, which will greatly improve your website access...", btn:{label:'More detail...', url:'/go', style:'success', right:1 }},
+        {id: step3, label:'Less Fee', desc:"Use our cloud CDN to increase or decrease your virtual server ", btn:{label:'Register today...', url:'/go', style:'info', right:1 }},
+        {id: step4, label:'Product', desc:"<img src=\"/web/img/Compare.png\"/>this is product"},
+        {id: about, label:'About Us', desc:"Algoblu was started....<P> Phone: 010-65694176-800<br>Fax: 010-65694176-329<br>Email: support@algoblu.com</p>"},
+        {id: news, label:'Products & Services', desc:'<a href="#">Cloud CDN</a><br><a href="#">CDN More Product</a>'},
+        {id: follow, label:'Follow Us', desc:"<img src=\"/web/img/icon-facebook-32.png\"/> <img src=\"/web/img/icon-google-plus-32.png\"/> <img src=\"/web/img/icon-rss-32.png\"/> <img src=\"/web/img/icon-twitter-32.png\"/> <hr>  © 2013 Algoblu. All rights reserved."},
+        {id: footstep1, label:'whate is cloud CDN', desc:"Use our cloud CDN to increase or decrease your virtual server ", btn:{label:'Register today...', url:'/go', style:'info', right:1 }}
     ], function(){
         console.log("Add article completed");
         addPage();
@@ -346,7 +346,7 @@ dao.delete('article',{},function(){
 var addCarousel = function(){
 dao.delete('carousel',{}, function(){
     dao.addNew('carousel', [
-        {_id: carouselId, 
+        {id: carouselId, 
          items:[
             {src:'/web/img/cloudVpnStru.png', title:'Full Stack Service Support', desc:'Html, video, audio, image, dynamic content...'},
             {src:'/web/img/cloudVpnTopo.png', title:'Deployment Optimization', desc:'Make the max use of your cloud resource, and only pay for that you needed...'}
@@ -361,33 +361,33 @@ dao.delete('carousel',{}, function(){
 var addNavi = function(){
 dao.delete('navi', {}, function(){
     // add navigation
-    dao.addNew('navi', [{_id:naviId, items:[
-        {_id:'home',
+    dao.addNew('navi', [{id:naviId, items:[
+        {id:'home',
          label:'home',
          url:'/'},
-        {_id:'product',
+        {id:'product',
          label:'product',
          url:'/product'},
-        {_id:'solution',
+        {id:'solution',
          label:'solution',
          url:'/solution'},
-        {_id:'customer',
+        {id:'customer',
          label:'customer',
          url:'/customer',
-         items:[{_id:'prod1',
+         items:[{id:'prod1',
                  label:'product1',
                  url:'/product'},
-                {_id:'prod2',
+                {id:'prod2',
                  label:'product2',
                  url:'/prod2'}]},
-        {_id:'partner',
+        {id:'partner',
          label:'partner',
          url:'/partner'},
-        {_id:'about',
+        {id:'about',
          label:'about',
          url:'/about'}
     ]},
-      {_id:quickAccessId, items:[
+      {id:quickAccessId, items:[
           {label:'contact', url:'/contact'}
       ]}], function(){
         console.log("Add navigation completed");

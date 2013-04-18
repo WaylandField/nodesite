@@ -36,14 +36,14 @@ exports.delete = function(collectionId, query, callback){
 
 exports.find = function(collectionId, query, callback){
     var collection = db.collection(collectionId);
-    collection.find(query, function(err, docs){
+    collection.find(query,{_id:0}, function(err, docs){
         callback(err, docs);
     });
 };
 
 exports.findOne = function(collectionId, query, callback){
     var collection = db.collection(collectionId);
-    collection.findOne(query, function(err, doc){
+    collection.findOne(query, {_id:0}, function(err, doc){
         callback(err, doc);
     });
 };

@@ -85,7 +85,7 @@ module.exports = function(app, verbose){
                         callbackObj : cmd1,
                         run :function(){
                             var that = this;
-                            dao.findOne(this.col, {'_id':this.sect.dataId}, function(err, doc){
+                            dao.findOne(this.col, {'id':this.sect.dataId}, function(err, doc){
                                 if(err){
                                     verbose && console.log('fail to load navigation');
                                 }else{
@@ -103,7 +103,7 @@ module.exports = function(app, verbose){
                         callbackObj : cmd1,
                         run :function(){
                             var that = this;
-                            dao.findOne(this.col, {_id:this.sect.dataId}, function(err, doc){
+                            dao.findOne(this.col, {id:this.sect.dataId}, function(err, doc){
                                 if(err){
                                     verbose && console.log('fail to load navigation');
                                 }else{
@@ -128,7 +128,7 @@ module.exports = function(app, verbose){
                                     callbackObj : cmd,
                                     run :function(){
                                         var that = this;
-                                        dao.findOne(this.col, {_id:this.sect.dataId}, function(err, doc){
+                                        dao.findOne(this.col, {id:this.sect.dataId}, function(err, doc){
                                             if(err){
                                                 verbose && console.log('fail to load navigation');
                                             }else{
@@ -153,7 +153,7 @@ module.exports = function(app, verbose){
                                 callbackObj : cmd,
                                 run :function(){
                                     var that = this;
-                                    dao.findOne(this.col, {_id:this.sect.dataId}, function(err, doc){
+                                    dao.findOne(this.col, {id:this.sect.dataId}, function(err, doc){
                                         if(err){
                                             verbose && console.log('fail to load navigation');
                                         }else{

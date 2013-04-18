@@ -3,20 +3,46 @@ $(document).ready(function(){
     var pageBtn = $("#pageBtn");
     var carouselBtn = $("#carouselBtn");
     var articleBtn = $("#articleBtn");
+    var recordsArea = $('#recordsArea');
     var mainArea = $('#mainArea');
-    var renderJson = function(html, json){
-        html.push('<ul>');
+    var renderRecords = function(json, collection){
+        var html = [];
+         html.push('<div>');
+        for(var k in json){
+            var record = json[k];
+            html.push('<div ><a href="/api/'+collection+'/'+record["id"]+'" class="records">',
+                      record["label"]?record["label"]: k ,'</a></div>');
+        }
+        html.push('</div>');
+        recordsArea.html(html.join(''));
+        $('.records').click(function(e){
+            e.preventDefault();
+            $('ul.nav > li').parent().removeClass('active');
+            $(this).parent().addClass('active');
+            loadSingle($(this).attr('href'));
+        });
+    };
+
+    var getJsonHtml = function(id, html, json){
+        html.push('<ul class="nav nav-list">');
         for(var k in json){
             var attr = json[k];
+            var newId = id + '.'+ k;
             switch(typeof attr){
                 case 'number':
                 case 'string':
                 case 'boolean':
-                html.push('<li >',k," -- ",attr,'</li>');
+                html.push('<li >');
+                if(k!=='desc'){
+                    html.push(k,' -- <input id="',newId,'" type="text" value="',attr,'">');
+                }else{
+                    html.push(k,' -- <textarea id="',newId,'">',attr,'</textarea>');
+                }
+                html.push('</li>');
                 break;
                 case 'object':
-                html.push('<li>',k);
-                renderJson(html, attr);
+                html.push('<li>');
+                getJsonHtml(newId, html, attr);
                 html.push('</li>');
                 break;
             }
@@ -24,56 +50,38 @@ $(document).ready(function(){
         html.push('</ul>');
     };
 
-    var createTab = function(tabId, items){
-        var tabs = [], contents=[];
-        tabs.push('<ul class="nav nav-tabs" id="',tabId,'">');
-        contents.push('<div class="tab-content" id="myTabContent">');
-        for(var k in items){
-            var item = items[k];
-            tabs.push('<li class=""><a data-toggle="tab" href="#',item.id,'">',item.label,'</a></li>');
-            contents.push('<div id="',item.id,'" class="tab-pane fade"><p>',item.content,'</p></div>');
-            
-        }
-        tabs.push('</ul>');
-        contents.push('</div>');
-        return tabs.join('')+contents.join('');
+    var generateJson = function(){
+        // visit form input element 
     };
 
-    var createEditor = function(json){
+    var renderSingle = function(json, collection){
         var html = [];
-        html.push('<div><textarea name="jsonEditor" id="editor" class="span10">');
-        html.push(JSON.stringify(json));
-        html.push('</textarea></div>');
-        html.push('<button type="button" id="saveBtn" class="btn btn-primary" data-loading-text="Loading...">Save</button>');
-        return html.join('');
+        var action = "/api/"+collection+"/"+json.id;
+        html.push('<form method="post" action="'+action+'">');
+        getJsonHtml(html, json, collection);
+        html.push('<button type="button" id="saveBtn" class="btn btn-primary" data-loading-text="Loading...">Save</button></form>');
+        mainArea.html(html.join(''));
+        $('#saveBtn').click(function(){
+            //var json = JSON.parse($('#editor').val());
+            saveNavi($('#editor').val());
+        });
     };
 
-    var loadNavi = function(msg){
-    	var temp = msg.attr("href").substring(1,msg.attr("href").length);
+    var loadSingle = function(res){
         $.ajax({dataType:'json', 
-                success: function(data){
-                    $('ul.bs-docs-sidenav > li.active').removeClass('active');
-                    msg.parent().addClass('active');
-                    var html = [];
-                    var tabId = 'editorTab';
-                    renderJson(html, data);
-                    mainArea.html(createTab(tabId, [
-                        {id:'view', label:'view' ,content:html.join('')},
-                        {id:'edit', label:'edit', content:createEditor(data)}]));
-                    
-                    $('#'+tabId+' a').click(function (e) {
-                        e.preventDefault();
-                        $(this).tab('show');
-                    });
-                    $('#'+tabId+' a:first').tab('show'); // Select first tab
-                    
-                    $('#saveBtn').click(function(){
-                    	//var json = JSON.parse($('#editor').val());
-                        saveNavi($('#editor').val());
-                    });
-
+                success: function(json){
+                    renderSingle(json.data, json.collectionId);
                 },
-                url:'/api/'+temp
+                url:res
+               });
+    };
+
+    var loadRecords = function(res){
+        $.ajax({dataType:'json', 
+                success: function(json){
+                    renderRecords(json.data, json.collectionId);
+                },
+                url:res
                });
     };
 
@@ -83,13 +91,16 @@ $(document).ready(function(){
             data:{'k':json},
             type:'post',
             success: function(data){
-                alert(data);
+
             },
             url:'/api/navi'
         });
     };
-    naviBtn.click(function (){loadNavi(naviBtn)});
-    pageBtn.click(function (){loadNavi(pageBtn)});
-    carouselBtn.click(function (){loadNavi(carouselBtn)});
-    articleBtn.click(function (){loadNavi(articleBtn)});
+    $('ul.nav > li > a').click(function(e){
+        e.preventDefault();
+        var collection = $(this).attr("href").substring(1);
+        $('ul.nav > li.active').removeClass('active');
+        $(this).parent().addClass("active");
+        loadRecords(collection);
+    });
 });

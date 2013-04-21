@@ -49,10 +49,41 @@ $(document).ready(function(){
         }
         html.push('</ul>');
     };
-
+    
     var generateJson = function(){
-        // visit form input element 
+		var _createJson = function(root, path, value){
+			var obj = root;
+			var strs = path.split(".");
+			for(var k=1;k<strs.length;k++){
+				if(strs[k]=='items'){
+					if(obj[strs[k]]==null){
+						obj[strs[k]] = [];
+					}
+					obj = obj[strs[k]];
+				}else if(!isNaN(strs[k])){
+					if(obj[strs[k]]==null){
+						obj.push({});
+					}
+					obj = obj[strs[k]];
+				}else{
+					if((k+1)==strs.length){
+						obj[strs[k]]=value;
+					}else{
+						if(obj[strs[k]]==null){
+							obj[strs[k]] = {};
+						}
+						obj = obj[strs[k+1]];
+					}
+				}
+			}
+		};
+   		var obj = {};
+    	$("input").each(function(){
+    		_createJson(obj,this.id,this.value);
+    	});
+    	return obj;
     };
+    
 
     var renderSingle = function(json, collection){
         var html = [];
@@ -62,8 +93,8 @@ $(document).ready(function(){
         html.push('<button type="button" id="saveBtn" class="btn btn-primary" data-loading-text="Loading...">Save</button></form>');
         mainArea.html(html.join(''));
         $('#saveBtn').click(function(){
-            //var json = JSON.parse($('#editor').val());
-            saveNavi($('#editor').val());
+			var obj = generateJson();
+            saveRecord(obj,collection);
         });
     };
 
@@ -85,15 +116,14 @@ $(document).ready(function(){
                });
     };
 
-    var saveNavi = function(data){
-    	var json = JSON.parse(data);
+    var saveRecord = function(obj, collection){
         $.ajax({
-            data:{'k':json},
+            data:{'data':obj},
             type:'post',
             success: function(data){
-
+				console.log(data);
             },
-            url:'/api/navi'
+            url:'/api/'+collection
         });
     };
     $('ul.nav > li > a').click(function(e){

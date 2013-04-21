@@ -123,7 +123,7 @@ $(document).ready(function(){
             success: function(data){
 				console.log(data);
             },
-            url:'/api/'+collection
+            url:'/api/'+collection+'/'+obj.id
         });
     };
     $('ul.nav > li > a').click(function(e){

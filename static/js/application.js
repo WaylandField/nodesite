@@ -33,7 +33,9 @@ $(document).ready(function(){
                 case 'string':
                 case 'boolean':
                 html.push('<li >');
-                if(k!=='desc'){
+                if(k=='id'){
+                    html.push(k,' -- ',attr);
+                }else if(k!=='desc'){
                     html.push(k,' -- <input id="',newId,'" type="text" value="',attr,'">');
                 }else{
                     html.push(k,' -- <textarea id="',newId,'">',attr,'</textarea>');
@@ -55,24 +57,28 @@ $(document).ready(function(){
 			var obj = root;
 			var strs = path.split(".");
 			for(var k=1;k<strs.length;k++){
-				if(strs[k]=='items'){
+				if(strs[k]=='items'||strs[k]=='rows'){
 					if(obj[strs[k]]==null){
 						obj[strs[k]] = [];
 					}
 					obj = obj[strs[k]];
 				}else if(!isNaN(strs[k])){
 					if(obj[strs[k]]==null){
-						obj.push({});
+                        if((strs.length-1>k)&&!isNaN(strs[k+1])){
+                            obj.push([]);
+                        }else{
+						    obj.push({});
+                        }
 					}
 					obj = obj[strs[k]];
 				}else{
-					if((k+1)==strs.length){
+					if(k==strs.length-1){
 						obj[strs[k]]=value;
 					}else{
 						if(obj[strs[k]]==null){
 							obj[strs[k]] = {};
 						}
-						obj = obj[strs[k+1]];
+						obj = obj[strs[k]];
 					}
 				}
 			}
@@ -121,7 +127,9 @@ $(document).ready(function(){
             data:{'data':obj},
             type:'post',
             success: function(data){
-				console.log(data);
+				if(data.success){
+                    alert('saved');
+                }
             },
             url:'/api/'+collection+'/'+obj.id
         });

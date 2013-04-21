@@ -200,7 +200,7 @@ module.exports = function(app, verbose){
                 console.log("Load Page "+page.pageId+'--'+page.path);
                 app.get(page.path, function(req, res){
                     console.log('process request@'+page.path);
-                    if(cache[page.id]){
+                    if(cache[page.id]&&!verbose){
                         res.send(cache[page.id]);
                     }else{
                         loadPageData(page, req, res);

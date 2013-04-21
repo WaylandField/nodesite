@@ -344,13 +344,13 @@ dao.delete('article',{},function(){
 
 var addCarousel = function(){
 dao.delete('carousel',{}, function(){
-    dao.addNew('carousel', [
+    dao.addNew('carousel', 
         {id: carouselId, 
          items:[
             {src:'/web/img/cloud_background.jpg', title:'Full Stack Service Support', desc:'Html, video, audio, image, dynamic content...'},
             {src:'/web/img/cloud_solutions.jpg', title:'Deployment Optimization', desc:'Make the max use of your cloud resource, and only pay for that you needed...'}
         ]}
-    ], function(){
+    , function(){
         console.log("Add carousel completed");
         addArticle();
     });

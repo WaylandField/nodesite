@@ -9,8 +9,7 @@ exports.update = function(collectionId, query, object, callback){
     var collection = db.collection(collectionId);
     collection.findAndModify({
         query: query, 
-        update: { $set: object },
-        new: false
+        update: { $set: object }
     }, callback);
 };
 
@@ -19,8 +18,7 @@ exports.updateMulti = function(collectionId, objects, callback){
     for(var k in objects){
      collection.findAndModify({
         query: {"_id":objects[k].id}, 
-        update: { $set: objects[k] },
-        new: 0
+        update: { $set: objects[k] }
      }, function(arg1, arg2, arg3, arg4){
 //         console.log(arg1);
 //         console.log(arg2);

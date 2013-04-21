@@ -28,15 +28,14 @@ var addPage = function(){
 dao.delete('page', {}, function(){
     dao.addNew('page', [
         {
-            pageId:'home',
+            id:'home',
             path:'/',
             label:'home',
             config:{
                  css:'fixed_navi_body'
                 },
-            structure:[
+            items:[
                 {id:'navi', ui:'navibar', dataId:naviId, config:{
-                    brand1: "<img src=\"/web/img/logo.png\"/><small>Time To Get Faster</small>",
                     brand: "Algoblu Cloud CDN <small>Time To Get Faster</small>",
                     container: 1,
                     innerContainer:1,
@@ -48,14 +47,14 @@ dao.delete('page', {}, function(){
                     container:1,
                     css:'container-lead'
                 }},
-                {ui:'thumbnails', row:[
+                {ui:'thumbnails', items:[
                     {dataId: thumb1, config:{span:4}},
                     {dataId: thumb2, config:{span:4}},
                     {dataId: thumb3, config:{span:4}}
                 ],config:{
                     container:1, title: 'Why Cloud CDN'
                 }},
-                {id:'steps', ui:'thumbnails', row:[
+                {id:'steps', ui:'thumbnails', items:[
                     {dataId: customer1, config:{span:3}},
                     {dataId: customer2, config:{span:3}},
                     {dataId: customer3, config:{span:3}},
@@ -66,7 +65,7 @@ dao.delete('page', {}, function(){
                 {ui:'grid', rows:[[
                     {span:4, dataId: about, config:{level:5}},
                     {span:4, dataId: news, config:{level:5}},
-                    {span:4, dataId: follow, config:{level:5}},
+                    {span:4, dataId: follow, config:{level:5}}
                 ]],config:{
                     css:'footer',
                     container:1
@@ -75,13 +74,13 @@ dao.delete('page', {}, function(){
             ]
         },
         {
-        pageId:'product',
+        id:'product',
         path:'/product',
         label:'product',
         config:{
         	css:'fixed_navi_body'
         },
-        structure:[
+        items:[
         	{id:'navi', ui:'navibar', dataId:naviId, config:{
                     brand1: "<img src=\"/web/img/logo.png\"/><small>Time To Get Faster</small>",
                     brand: "Algoblu <small>Time To Get Faster</small>",
@@ -109,13 +108,13 @@ dao.delete('page', {}, function(){
         ]
         },
          {
-        pageId:'solution',
+        id:'solution',
         path:'/solution',
         label:'solution',
         config:{
         	css:'fixed_navi_body'
         },
-         structure:[
+         items:[
         	{id:'navi', ui:'navibar', dataId:naviId, config:{
                     brand1: "<img src=\"/web/img/logo.png\"/><small>Time To Get Faster</small>",
                     brand: "Algoblu <small>Time To Get Faster</small>",
@@ -143,13 +142,13 @@ dao.delete('page', {}, function(){
           ]
           },
          {
-        pageId:'customer',
+        id:'customer',
         path:'/customer',
         label:'customer',
         config:{
         	css:'fixed_navi_body'
         },
-         structure:[
+         items:[
         	{id:'navi', ui:'navibar', dataId:naviId, config:{
                     brand1: "<img src=\"/web/img/logo.png\"/><small>Time To Get Faster</small>",
                     brand: "Algoblu <small>Time To Get Faster</small>",
@@ -177,13 +176,13 @@ dao.delete('page', {}, function(){
           ]
           },
          {
-        pageId:'product1',
+        id:'product1',
         path:'/product1',
         label:'product1',
         config:{
         	css:'fixed_navi_body'
         },
-         structure:[
+         items:[
         	{id:'navi', ui:'navibar', dataId:naviId, config:{
                     brand1: "<img src=\"/web/img/logo.png\"/><small>Time To Get Faster</small>",
                     brand: "Algoblu <small>Time To Get Faster</small>",
@@ -211,13 +210,13 @@ dao.delete('page', {}, function(){
           ]
           },
          {
-        pageId:'product2',
+        id:'product2',
         path:'/prod2',
         label:'product2',
         config:{
         	css:'fixed_navi_body'
         },
-         structure:[
+         items:[
         	{id:'navi', ui:'navibar', dataId:naviId, config:{
                     brand1: "<img src=\"/web/img/logo.png\"/><small>Time To Get Faster</small>",
                     brand: "Algoblu <small>Time To Get Faster</small>",
@@ -245,13 +244,13 @@ dao.delete('page', {}, function(){
           ]
           },
          {
-        pageId:'partner',
+        id:'partner',
         path:'/partner',
         label:'partner',
         config:{
         	css:'fixed_navi_body'
         },
-         structure:[
+         items:[
         	{id:'navi', ui:'navibar', dataId:naviId, config:{
                     brand1: "<img src=\"/web/img/logo.png\"/><small>Time To Get Faster</small>",
                     brand: "Algoblu <small>Time To Get Faster</small>",
@@ -279,13 +278,13 @@ dao.delete('page', {}, function(){
           ]
           },
          {
-        pageId:'about',
+        id:'about',
         path:'/about',
         label:'about',
         config:{
         	css:'fixed_navi_body'
         },
-         structure:[
+         items:[
         	{id:'navi', ui:'navibar', dataId:naviId, config:{
                     brand1: "<img src=\"/web/img/logo.png\"/><small>Time To Get Faster</small>",
                     brand: "Algoblu <small>Time To Get Faster</small>",
@@ -345,13 +344,13 @@ dao.delete('article',{},function(){
 
 var addCarousel = function(){
 dao.delete('carousel',{}, function(){
-    dao.addNew('carousel', [
+    dao.addNew('carousel', 
         {id: carouselId, 
          items:[
             {src:'/web/img/cloud_background.jpg', title:'Full Stack Service Support', desc:'Html, video, audio, image, dynamic content...'},
             {src:'/web/img/cloud_solutions.jpg', title:'Deployment Optimization', desc:'Make the max use of your cloud resource, and only pay for that you needed...'}
         ]}
-    ], function(){
+    , function(){
         console.log("Add carousel completed");
         addArticle();
     });

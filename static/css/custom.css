@@ -9,6 +9,7 @@
 .container-lead{
     padding-top:20px;
     background-color:#005E9C;
+    margin-bottom:10px;
 //    background-image: -moz-linear-gradient(bottom, #ffffff, #e6e6e6);
 //    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#e6e6e6));
 //    background-image: -webkit-linear-gradient(bottom, #ffffff, #e6e6e6);

@@ -33,8 +33,10 @@ $(document).ready(function(){
                 case 'string':
                 case 'boolean':
                 html.push('<li >');
-                if(k!=='desc'){
-                    html.push(k,' -- <input id="',newId,'" type="text" value="',attr,'">');
+                if(k=='id'){
+                    html.push(k,' -- ',attr,'<input type="hidden" dataType="',(typeof attr),'" id="',newId,'" value="',attr,'">');
+                }else if(k!=='desc'){
+                    html.push(k,' -- <input id="',newId,'" dataType="',(typeof attr),'" type="text" value="',attr,'">');
                 }else{
                     html.push(k,' -- <textarea id="',newId,'">',attr,'</textarea>');
                 }
@@ -51,35 +53,51 @@ $(document).ready(function(){
     };
     
     var generateJson = function(){
-		var _createJson = function(root, path, value){
+        var _formatData = function(dataType, value){
+            var result = value;
+            switch(dataType){
+                case "number":
+                result = (new Number(value)).valueOf();
+                break;
+                case "boolean":
+                result = (value==""||value=="0"||value=="false")?0:1;
+                break;
+            }
+            return result;
+        };
+		var _createJson = function(root, path, value, dataType){
 			var obj = root;
 			var strs = path.split(".");
 			for(var k=1;k<strs.length;k++){
-				if(strs[k]=='items'){
+				if(strs[k]=='items'||strs[k]=='rows'){
 					if(obj[strs[k]]==null){
 						obj[strs[k]] = [];
 					}
 					obj = obj[strs[k]];
 				}else if(!isNaN(strs[k])){
 					if(obj[strs[k]]==null){
-						obj.push({});
+                        if((strs.length-1>k)&&!isNaN(strs[k+1])){
+                            obj.push([]);
+                        }else{
+						    obj.push({});
+                        }
 					}
 					obj = obj[strs[k]];
 				}else{
-					if((k+1)==strs.length){
-						obj[strs[k]]=value;
+					if(k==strs.length-1){
+						obj[strs[k]]=_formatData(dataType, value);
 					}else{
 						if(obj[strs[k]]==null){
 							obj[strs[k]] = {};
 						}
-						obj = obj[strs[k+1]];
+						obj = obj[strs[k]];
 					}
 				}
 			}
 		};
    		var obj = {};
     	$("input").each(function(){
-    		_createJson(obj,this.id,this.value);
+    		_createJson(obj,this.id,this.value, $(this).attr("dataType"));
     	});
     	return obj;
     };
@@ -118,10 +136,14 @@ $(document).ready(function(){
 
     var saveRecord = function(obj, collection){
         $.ajax({
-            data:{'data':obj},
+            data:JSON.stringify({"data":obj}),
+            contentType: 'application/json',
             type:'post',
+            dataType : 'json',
             success: function(data){
-				console.log(data);
+				if(data.success){
+                    alert('saved');
+                }
             },
             url:'/api/'+collection+'/'+obj.id
         });

@@ -1,3 +1,5 @@
+var cache = {};
+
 module.exports = function(app, verbose){
     verbose && console.log("----------Load Dynamic Page Started--------------------------");
 
@@ -5,10 +7,10 @@ module.exports = function(app, verbose){
     var uiFactory = require('./uiFactory');
 
     var renderPage = function(page, req, res){
-        if(page&&page.structure){
+        if(page&&page.items){
             var html = [];
-            for(var i=0;i<page.structure.length;i++){
-                var sect = page.structure[i];
+            for(var i=0;i<page.items.length;i++){
+                var sect = page.items[i];
                 verbose && console.log("render UI : "+sect.ui);
                 switch(sect.ui){
                 case 'navibar':
@@ -21,7 +23,7 @@ module.exports = function(app, verbose){
                 case 'thumbnails':
                     html.push(uiFactory.create(sect.ui,{
                         config:sect.config?sect.config:{},
-                        row: sect.row
+                        row: sect.items
                     }).html);
                     break;
                 case 'grid':
@@ -58,7 +60,7 @@ module.exports = function(app, verbose){
             res.set({
                 'Content-Length': ui.html.length
             });
-
+            cache[page.id] = ui.html;
             res.send(ui.html);
         }else{
             res.send('page not existed');
@@ -67,12 +69,12 @@ module.exports = function(app, verbose){
 
     // fetch page data and put it to page object
     var loadData = function(page, callback){
-        if(page&&page.structure){
+        if(page&&page.items){
             var html = [];
             var cmd = callback, cmd1;
             var chain = [];
-            for(var i=0;i<page.structure.length;i++){
-                var sect = page.structure[i];
+            for(var i=0;i<page.items.length;i++){
+                var sect = page.items[i];
                 if(!sect){
                     continue;
                 }
@@ -143,7 +145,7 @@ module.exports = function(app, verbose){
                     }
                     break;
                 case 'thumbnails':
-                    var row = sect.row;
+                    var row = sect.items;
                     if(row){
                         for(var _jj=0;_jj<row.length;_jj++){
                             var collumn = row[_jj];
@@ -176,18 +178,20 @@ module.exports = function(app, verbose){
     };
     
     var loadPageData = function(page, req, res){
-        if(page&&page.structure){
-            loadData(page, {
-                page:page,
-                req: req, 
-                res: res,
-                run : function(){
-                    renderPage(this.page, this.req, this.res);
-                }
-            });
-        }else{
-            res.send('page not existed');
-        }
+        dao.findOne('page', {id:page.id}, function(err, page){
+            if(page&&page.items){
+                loadData(page, {
+                    page:page,
+                    req: req, 
+                    res: res,
+                    run : function(){
+                        renderPage(this.page, this.req, this.res);
+                    }
+                });
+            }else{
+                res.send('page not existed');
+            }
+        });
     };
 
     dao.find('page', {}, function(err, pages){
@@ -195,9 +199,12 @@ module.exports = function(app, verbose){
             pages.forEach(function(page){
                 console.log("Load Page "+page.pageId+'--'+page.path);
                 app.get(page.path, function(req, res){
-                    // todo cache support
                     console.log('process request@'+page.path);
-                    loadPageData(page, req, res);
+                    if(cache[page.id]&&!verbose){
+                        res.send(cache[page.id]);
+                    }else{
+                        loadPageData(page, req, res);
+                    }
                 });
             });
         }

@@ -62,7 +62,7 @@ $(document).ready(function(){
     	html.push('<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>');
     	html.push('<h3>选择文件</h3>');
     	html.push('</div>');
-    	html.push('<form action="/service/upload">');
+    	html.push('<form action="/service/upload" method="post" enctype="multipart/form-data" target="_blank">');
     	html.push('<div class="modal-body">');
     	html.push('<input type="file" name="nodeFile"/>');
     	html.push('</div>');

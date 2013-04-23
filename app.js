@@ -3,7 +3,7 @@ var app = express();
 var i18n = require("i18n");
 app.use('/web', express.static(__dirname+'/static'));
 
-app.use(express.bodyParser({ keepExtensions: true, uploadDir: './static/upload' }));
+app.use(express.bodyParser());
 app.use(express.cookieParser('shhhh, very secret'));
 app.use(express.session());
 

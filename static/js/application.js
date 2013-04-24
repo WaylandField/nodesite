@@ -41,7 +41,8 @@ $(document).ready(function(){
                     	createFileUpload(html,newId);
                     }
                 }else{
-                    html.push(k,' -- <textarea id="',newId,'">',attr,'</textarea>');
+                    html.push(k,' -- <textarea id="',newId,'" name=',newId,'>',attr,'</textarea>');
+                    html.push('<script type="text/javascript"> CKEDITOR.replace(\'',newId,'\');</script>');
                 }
                 html.push('</li>');
                 break;
@@ -124,7 +125,7 @@ $(document).ready(function(){
 			}
 		};
    		var obj = {};
-    	$("input").each(function(){
+    	$("input,textarea").each(function(){
     		_createJson(obj,this.id,this.value, $(this).attr("dataType"));
     	});
     	return obj;
@@ -140,10 +141,17 @@ $(document).ready(function(){
         mainArea.html(html.join(''));
         createModelDialog();
         $('#saveBtn').click(function(){
+        	getCKEditorInfo();
 			var obj = generateJson();
             saveRecord(obj,collection);
         });
     };
+    var getCKEditorInfo = function (){
+    	$('textarea').each(function () {
+		   var $textarea = $(this);
+		   $textarea.val(CKEDITOR.instances[$textarea.attr('name')].getData());
+		});
+    }
 
     var loadSingle = function(res){
         $.ajax({dataType:'json', 

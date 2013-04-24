@@ -26,6 +26,5 @@ exports.upload = {
                 if (err) throw err;
             });
         });
-
     }
 };

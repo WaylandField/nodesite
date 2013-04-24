@@ -30,29 +30,29 @@ dao.delete('page', {}, function(){
         {
             id:'home',
             path:'/',
-            label:'home',
+            label:'主页',
             config:{
                  css:'fixed_navi_body'
                 },
             items:[
                 {id:'navi', ui:'navibar', dataId:naviId, config:{
-                    brand: "Algoblu Cloud CDN <small>Time To Get Faster</small>",
+                    brand: "Algoblu云CDN",
                     container: 1,
                     innerContainer:1,
                     fixedTop:1,
-                    inverse:1,
+                    inverse:0,
                     right:1
                 }},
                 {id:'carousel', ui:'carousel', dataId:carouselId, config:{
                     container:1,
                     css:'container-lead'
                 }},
-                {ui:'thumbnails', items:[
-                    {dataId: thumb1, config:{span:4}},
-                    {dataId: thumb2, config:{span:4}},
-                    {dataId: thumb3, config:{span:4}}
+                {ui:'grid', rows:[[
+                    {dataId: thumb1, span:4, config:{level:4}},
+                    {dataId: thumb2, span:4, config:{level:4}},
+                    {dataId: thumb3, span:4, config:{level:4}}]
                 ],config:{
-                    container:1, title: 'Why Cloud CDN'
+                    container:1
                 }},
                 {id:'steps', ui:'thumbnails', items:[
                     {dataId: customer1, config:{span:3}},
@@ -66,7 +66,7 @@ dao.delete('page', {}, function(){
                     {span:4, dataId: about, config:{level:5}},
                     {span:4, dataId: news, config:{level:5}},
                     {span:4, dataId: follow, config:{level:5}}
-                ]],config:{
+                ],[{span:10, dataId: footstep1}]],config:{
                     css:'footer',
                     container:1
                 }}
@@ -76,7 +76,7 @@ dao.delete('page', {}, function(){
         {
         id:'product',
         path:'/product',
-        label:'product',
+        label:'产品',
         config:{
         	css:'fixed_navi_body'
         },
@@ -87,7 +87,7 @@ dao.delete('page', {}, function(){
                     container: 1,
                     innerContainer:1,
                     fixedTop:1,
-                    inverse:1,
+                    inverse:0,
                     right:1
              }},
              {id:'steps', ui:'grid', rows:[[
@@ -110,7 +110,7 @@ dao.delete('page', {}, function(){
          {
         id:'solution',
         path:'/solution',
-        label:'solution',
+        label:'解决方案',
         config:{
         	css:'fixed_navi_body'
         },
@@ -121,7 +121,7 @@ dao.delete('page', {}, function(){
                     container: 1,
                     innerContainer:1,
                     fixedTop:1,
-                    inverse:1,
+                    inverse:0,
                     right:1
              }},
              {ui:'grid', rows:[[
@@ -144,7 +144,7 @@ dao.delete('page', {}, function(){
          {
         id:'customer',
         path:'/customer',
-        label:'customer',
+        label:'客户&案例',
         config:{
         	css:'fixed_navi_body'
         },
@@ -155,7 +155,7 @@ dao.delete('page', {}, function(){
                     container: 1,
                     innerContainer:1,
                     fixedTop:1,
-                    inverse:1,
+                    inverse:0,
                     right:1
              }},
              {ui:'grid', rows:[[
@@ -189,7 +189,7 @@ dao.delete('page', {}, function(){
                     container: 1,
                     innerContainer:1,
                     fixedTop:1,
-                    inverse:1,
+                    inverse:0,
                     right:1
              }},
              {ui:'grid', rows:[[
@@ -223,7 +223,7 @@ dao.delete('page', {}, function(){
                     container: 1,
                     innerContainer:1,
                     fixedTop:1,
-                    inverse:1,
+                    inverse:0,
                     right:1
              }},
              {ui:'grid', rows:[[
@@ -246,7 +246,7 @@ dao.delete('page', {}, function(){
          {
         id:'partner',
         path:'/partner',
-        label:'partner',
+        label:'合作伙伴',
         config:{
         	css:'fixed_navi_body'
         },
@@ -257,7 +257,7 @@ dao.delete('page', {}, function(){
                     container: 1,
                     innerContainer:1,
                     fixedTop:1,
-                    inverse:1,
+                    inverse:0,
                     right:1
              }},
              {ui:'grid', rows:[[
@@ -280,7 +280,7 @@ dao.delete('page', {}, function(){
          {
         id:'about',
         path:'/about',
-        label:'about',
+        label:'关于我们',
         config:{
         	css:'fixed_navi_body'
         },
@@ -291,7 +291,7 @@ dao.delete('page', {}, function(){
                     container: 1,
                     innerContainer:1,
                     fixedTop:1,
-                    inverse:1,
+                    inverse:0,
                     right:1
              }},
              {ui:'grid', rows:[[
@@ -331,10 +331,10 @@ dao.delete('article',{},function(){
         {id: step2, label:'Much Faster', desc:"Our CDN provides on demand virtual CDN deploying services, which will greatly improve your website access...", btn:{label:'More detail...', url:'/go', style:'success', right:1 }},
         {id: step3, label:'Less Fee', desc:"Use our cloud CDN to increase or decrease your virtual server ", btn:{label:'Register today...', url:'/go', style:'info', right:1 }},
         {id: step4, label:'Product', desc:"<img src=\"/web/img/Compare.png\"/>this is product"},
-        {id: about, label:'About Us', desc:"Algoblu was started....<P> Phone: 010-65694176-800<br>Fax: 010-65694176-329<br>Email: support@algoblu.com</p>"},
-        {id: news, label:'Products & Services', desc:'<a href="#">Cloud CDN</a><br><a href="#">CDN More Product</a>'},
-        {id: follow, label:'Follow Us', desc:"<img src=\"/web/img/icon-facebook-32.png\"/> <img src=\"/web/img/icon-google-plus-32.png\"/> <img src=\"/web/img/icon-rss-32.png\"/> <img src=\"/web/img/icon-twitter-32.png\"/> <hr>  © 2013 Algoblu. All rights reserved."},
-        {id: footstep1, label:'whate is cloud CDN', desc:"Use our cloud CDN to increase or decrease your virtual server ", btn:{label:'Register today...', url:'/go', style:'info', right:1 }}
+        {id: about, label:'联系我们', desc:"电话：010-65694176-800<br>传真：010-65694176-329<br>Email: support@algoblu.com</p>"},
+        {id: news, label:'产品和服务', desc:'<a href="#">Cloud CDN</a><br><a href="#">CDN More Product</a>'},
+        {id: follow, label:'Algoblu动态', desc:"<img src=\"/web/img/icon-facebook-32.png\"/> <img src=\"/web/img/icon-google-plus-32.png\"/> <img src=\"/web/img/icon-rss-32.png\"/> <img src=\"/web/img/icon-twitter-32.png\"/>"},
+        {id: footstep1, _label:'网站页脚', desc:"北京肇煜宏泰信息科技有限公司版权所有 京ICP备案号 123343444"}
     ], function(){
         console.log("Add article completed");
         addPage();
@@ -346,8 +346,9 @@ var addCarousel = function(){
 dao.delete('carousel',{}, function(){
     dao.addNew('carousel', 
         {id: carouselId, 
+	label:'首页滚动新闻',
          items:[
-            {src:'/web/img/cloud_background.jpg', title:'Full Stack Service Support', desc:'Html, video, audio, image, dynamic content...'},
+            {src:'/web/img/cloud_solutions.png', title:'', desc:''},
             {src:'/web/img/cloud_solutions.jpg', title:'Deployment Optimization', desc:'Make the max use of your cloud resource, and only pay for that you needed...'}
         ]}
     , function(){
@@ -360,18 +361,18 @@ dao.delete('carousel',{}, function(){
 var addNavi = function(){
 dao.delete('navi', {}, function(){
     // add navigation
-    dao.addNew('navi', [{id:naviId, items:[
+    dao.addNew('navi', [{id:naviId, label:'默认导航', items:[
         {id:'home',
-         label:'home',
+         label:'主页',
          url:'/'},
         {id:'product',
-         label:'product',
+         label:'产品',
          url:'/product'},
         {id:'solution',
-         label:'solution',
+         label:'解决方案',
          url:'/solution'},
         {id:'customer',
-         label:'customer',
+         label:'客户&案例',
          url:'/customer',
          items:[{id:'prod1',
                  label:'product1',
@@ -380,15 +381,12 @@ dao.delete('navi', {}, function(){
                  label:'product2',
                  url:'/prod2'}]},
         {id:'partner',
-         label:'partner',
+         label:'合作伙伴',
          url:'/partner'},
-        {id:'about',
+        {id:'关于我们',
          label:'about',
          url:'/about'}
-    ]},
-      {id:quickAccessId, items:[
-          {label:'contact', url:'/contact'}
-      ]}], function(){
+    ]}], function(){
         console.log("Add navigation completed");
         addCarousel();
     });

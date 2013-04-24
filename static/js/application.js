@@ -11,7 +11,7 @@ $(document).ready(function(){
         for(var k in json){
             var record = json[k];
             html.push('<div ><a href="/api/'+collection+'/'+record["id"]+'" class="records">',
-                      record["label"]?record["label"]: k ,'</a></div>');
+                      record["_label"]?record["_label"]:(record["label"]?record["label"]: k) ,'</a></div>');
         }
         html.push('</div>');
         recordsArea.html(html.join(''));

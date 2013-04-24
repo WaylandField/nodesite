@@ -37,6 +37,9 @@ $(document).ready(function(){
                     html.push(k,' -- ',attr,'<input type="hidden" dataType="',(typeof attr),'" id="',newId,'" value="',attr,'">');
                 }else if(k!=='desc'){
                     html.push(k,' -- <input id="',newId,'" dataType="',(typeof attr),'" type="text" value="',attr,'">');
+                    if(k=='src'){
+                    	createFileUpload(html,newId);
+                    }
                 }else{
                     html.push(k,' -- <textarea id="',newId,'">',attr,'</textarea>');
                 }
@@ -51,6 +54,31 @@ $(document).ready(function(){
         }
         html.push('</ul>');
     };
+    
+    var createModelDialog = function(){
+    	var html = [];
+    	html.push('<div id="myModal" class="modal hide fade">');
+    	html.push('<div class="modal-header">');
+    	html.push('<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>');
+    	html.push('<h3>选择文件</h3>');
+    	html.push('</div>');
+    	html.push('<form action="/service/upload" method="post" enctype="multipart/form-data" target="_blank">');
+    	html.push('<div class="modal-body">');
+    	html.push('<input type="file" name="nodeFile"/>');
+    	html.push('</div>');
+    	html.push('<div class="modal-footer">');
+    	html.push('<input type="submit" class="btn btn-primary" value="上传"/>');
+    	html.push('<a href="#" class="btn" data-dismiss="modal" aria-hidden="true">取消</a>');
+    	//html.push('<a href="#" class="btn btn-primary">Save changes</a>');
+    	html.push('</div>');
+    	html.push('</form>');
+    	html.push('</div>');
+    	$("body").append(html.join(""));
+    };
+    
+    var createFileUpload = function(html){
+    	html.push('<button class="btn" type="button" data-toggle="modal" data-target="#myModal">上传文件</button>');
+    }
     
     var generateJson = function(){
         var _formatData = function(dataType, value){
@@ -110,6 +138,7 @@ $(document).ready(function(){
         getJsonHtml('', html, json, collection);
         html.push('<button type="button" id="saveBtn" class="btn btn-primary" data-loading-text="Loading...">Save</button></form>');
         mainArea.html(html.join(''));
+        createModelDialog();
         $('#saveBtn').click(function(){
 			var obj = generateJson();
             saveRecord(obj,collection);

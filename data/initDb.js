@@ -191,8 +191,8 @@ dao.delete('page', {}, function(){
           },
          {
         id:'product1',
-        path:'/product1',
-        label:'product1',
+        path:'/customer',
+        label:'客户',
         config:{
         	css:'fixed_navi_body'
         },
@@ -225,8 +225,8 @@ dao.delete('page', {}, function(){
           },
          {
         id:'product2',
-        path:'/prod2',
-        label:'product2',
+        path:'/cases',
+        label:'成功案例',
         config:{
         	css:'fixed_navi_body'
         },
@@ -350,9 +350,9 @@ dao.delete('article',{},function(){
         {id: news, label:'产品和服务', desc:'<a href="#">Cloud CDN</a><br><a href="#">CDN More Product</a>'},
         {id: follow, label:'Algoblu动态', desc:"<img src=\"/web/img/icon-facebook-32.png\"/> <img src=\"/web/img/icon-google-plus-32.png\"/> <img src=\"/web/img/icon-rss-32.png\"/> <img src=\"/web/img/icon-twitter-32.png\"/>"},
         {id: footstep1, _label:'网站页脚', desc:"北京肇煜宏泰信息科技有限公司版权所有 京ICP备案号 123343444"},
-        {id: feature1, label:'<img src="/web/img/rocket.png">加速服务', desc:'支持全方位网站加速服务，包括', btn:{label:'Register today...', url:'/go', style:'info' }},
-        {id: feature2, label:'自定义网络', desc:'可根据网站访问情况对CDN网络做深度自定义，包括', btn:{label:'Register today...', url:'/go', style:'success'}},
-        {id: feature3, label:'反馈报表', desc:'为CDN网络提供全全面访问分析报表', btn:{label:'Register today...', url:'/go', style:'primary'}},
+        {id: feature1, label:'<img src="/web/img/cloud.png"> 云加速服务', desc:'支持全方位网站加速服务，包括WEB网站加速、文件下载加速、流媒体加速、小文件加速、动态内容加速...', btn:{label:'了解更多...', url:'/go', style:'info' }},
+        {id: feature2, label:'<img src="/web/img/puzzle.png"> 自定义CDN网络', desc:'可根据网站访问情况对CDN网络做深度自定义，可根据地域、运营商、网站加速内容等自定义云CDN节点从而形成完全自定义CDN网络...', btn:{label:'了解更多...', url:'/go', style:'success'}},
+        {id: feature3, label:'<img src="/web/img/chart.png"> 反馈报表', desc:'我们将在云端存储每一条客户访问请求，通过多种分析算法，为客户提供海量数据的全面分析报表，并实时反馈给用户...', btn:{label:'了解更多...', url:'/go', style:'primary'}},
 	{id: accord1, _label:'首页图片可收缩内容', items:[
                     {label:'为什么云CDN', desc:'<li><a href="/product#virtual">虚拟化</a></li><li><a href="/product#virtual">虚拟化</a></li>'},
                     {label:'成功案例', desc:'<li><a href="/product#virtual">风行网</a></li>'},
@@ -395,13 +395,12 @@ dao.delete('navi', {}, function(){
          url:'/solution'},
         {id:'customer',
          label:'客户&案例',
-         url:'/customer',
          items:[{id:'prod1',
-                 label:'product1',
-                 url:'/product'},
+                 label:'客户',
+                 url:'/customers'},
                 {id:'prod2',
-                 label:'product2',
-                 url:'/prod2'}]},
+                 label:'成功案例',
+                 url:'/cases'}]},
         {id:'partner',
          label:'合作伙伴',
          url:'/partner'},

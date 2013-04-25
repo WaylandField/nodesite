@@ -10,6 +10,7 @@ module.exports = function(app, verbose){
         if(page&&page.items){
             var html = [];
             for(var i=0;i<page.items.length;i++){
+//                html.push('<div class="section-divide">');
                 var sect = page.items[i];
                 verbose && console.log("render UI : "+sect.ui);
                 switch(sect.ui){
@@ -35,7 +36,7 @@ module.exports = function(app, verbose){
                                 var column = row[_ii];
                                 column.body = uiFactory.create(column.ui?column.ui:'simple',{
                                     config:column.config?column.config:{},
-                                    item: column.data
+                                    data: column.data
                                 }).html;
                             }
                         }
@@ -46,8 +47,9 @@ module.exports = function(app, verbose){
                     }).html);
                     break;
                  default:
-                    html.push('page@'+page.id +", path:"+page.path);
+                    html.push('no such ui type as:'+sect.ui);
                 }
+//                html.push("</div>");
             }
             var jsFuncs = uiFactory.getJsDeps(page);
             var ui = uiFactory.create('page', {
@@ -99,6 +101,7 @@ module.exports = function(app, verbose){
                     };
                     break;
                 case 'carousel':
+                case 'accordion':
                     cmd = {
                         col : 'carousel',
                         sect : sect,

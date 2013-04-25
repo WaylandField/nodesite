@@ -12,9 +12,9 @@
    <div id="<%=uiId%>"  class="row<%if(config.fluid){%>-fluid<%}%>">
         <% columns.forEach(function(col){%>
            <div class="
-           <%if(col.span){%>span<%=col.span%><%}%>
-           <%if(col.offset){%>offset<%=col.offset%><%}%> 
-           <%=(col.css?col.css:"")%> 
+           <%if(col.config.span){%>span<%=col.config.span%><%}%>
+           <%if(col.config.offset){%>offset<%=col.config.offset%><%}%> 
+           <%=(col.config.css?col.config.css:"")%> 
            "><%-col.body%></div>
         <%});%>
    </div>

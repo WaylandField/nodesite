@@ -1,6 +1,8 @@
+<%var item = data;%>
 <%if(item){%>
-<div class="<=config.css?config.css:''>">
+<div class="<%=config.css?config.css:''%>">
     <%var tag = "h"+(config&&config.level?config.level:3);%>
+    <%if(item.src){%><img src="<%-item.src%>"><%}%>
     <%if(item.label){%><<%=tag%>><%-item.label%></<%=tag%>><%}%>
     <%if(item.desc){%><p><%-item.desc%></p><%}%>
     <%if(item.btn){%>

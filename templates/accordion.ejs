@@ -1,0 +1,22 @@
+<%var items = data.items;%>
+
+<%if(config.css){%><div class="<%=config.css%>"><%}%>
+<div class="accordion" id="<%=uiId%>">
+<%for(var i=0;i<items.length;i++){
+var item = items[i];
+%>
+<div class="accordion-group">
+  <div class="accordion-heading">
+<a class="accordion-toggle" data-toggle="collapse" data-parent="#<%=uiId%>" href="#<%=uiId%>_<%=i%>">
+<%-item.label%>
+</a>
+  </div>
+  <div id="<%=uiId%>_<%=i%>" class="accordion-body collapse <%=i==0?"in":""%>">
+     <div class="accordion-inner">
+     <%-item.desc%>
+     </div>
+   </div>
+</div>
+<%}%>
+</div>
+<%if(config.css){%></div><%}%>

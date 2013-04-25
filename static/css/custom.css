@@ -55,6 +55,24 @@
     text-align:center;
 }
 
+.homepage_accord{
+	-webkit-animation-name: bounceInDown;
+	-webkit-animation-fill-mode: both;
+	-webkit-animation-duration: 1.5s;
+	-webkit-animation-iteration-count: 1;
+	-webkit-animation-timing-function: linear;
+	-moz-animation-name: bounceInDown;
+	-moz-animation-fill-mode: both;
+	-moz-animation-duration: 1.5s;
+	-moz-animation-iteration-count: 1;
+	-moz-animation-timing-function: linear;
+	animation-name: bounceInDown;
+	animation-fill-mode: both;
+	animation-duration: 1.5s;
+	animation-iteration-count: 1;
+	animation-timing-function: linear;
+}
+
 .homepage_accord .accordion-heading{
     background-color:#005E9C;
 }

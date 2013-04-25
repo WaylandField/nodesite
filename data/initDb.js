@@ -145,7 +145,7 @@ dao.delete('page', {}, function(){
                   css:'container-lead'
               }},
               {ui:'grid', rows:[[
-                  {dataId: step1, config:{level:4, span:8 }},
+                  {dataId: step2, config:{level:4, span:8 }},
                   {dataId: feature2, config:{level:4, span:4, }}]
               ],config:{
                   container:1
@@ -182,7 +182,7 @@ dao.delete('page', {}, function(){
                   css:'container-lead'
               }},
               {ui:'grid', rows:[[
-                  {dataId: step1, config:{level:4, span:8 }},
+                  {dataId: step3, config:{level:4, span:8 }},
                   {dataId: feature2, config:{level:4, span:4, }}]
               ],config:{
                   container:1
@@ -219,7 +219,7 @@ dao.delete('page', {}, function(){
                   css:'container-lead'
               }},
               {ui:'grid', rows:[[
-                  {dataId: step1, config:{level:4, span:8 }},
+                  {dataId: step3, config:{level:4, span:8 }},
                   {dataId: feature2, config:{level:4, span:4, }}]
               ],config:{
                   container:1
@@ -256,7 +256,7 @@ dao.delete('page', {}, function(){
                   css:'container-lead'
               }},
               {ui:'grid', rows:[[
-                  {dataId: step1, config:{level:4, span:8 }},
+                  {dataId: step4, config:{level:4, span:8 }},
                   {dataId: feature2, config:{level:4, span:4, }}]
               ],config:{
                   container:1
@@ -355,18 +355,18 @@ dao.delete('page', {}, function(){
 var addArticle = function(){
 dao.delete('article',{},function(){
     dao.addNew('article', [
-        {id: thumb1, entity:'thumb', src:'/web/img/dollar.png', url:'/...', alt:'Powerful', caption:{label:'More Powerful', desc:"With our cloud CDN, we provide full stack CDN services includes HTML and Stream...", btn:{label:'Check this out...', url:'/go', style:'primary' }}},
-        {id: thumb2, entity:'thumb', src:'/web/img/rocket.png', url:'/...', alt:'Faster', caption:{label:'Much Faster', desc:"Our CDN provides on demand virtual CDN deploying services, which will greatly improve your website access...", btn:{label:'More detail...', url:'/go', style:'success' }}},
-        {id: thumb3, entity:'thumb', src:'/web/img/dollar.png', url:'/...', alt:'Cheaper',caption: {label:'Less Fee', desc:"With our cloud CDN, only increase the virutal severs when needed, this will cut unesscessray cost...", btn:{label:'Register today...', url:'/go', style:'info'}}},
-        {id: thumb4, entity:'thumb', src:'/web/img/cloud_solutions.png', url:'/...'},
+        {id: thumb1, _label:'thumb1', entity:'thumb', src:'/web/img/dollar.png', url:'/...', alt:'Powerful', caption:{label:'More Powerful', desc:"With our cloud CDN, we provide full stack CDN services includes HTML and Stream...", btn:{label:'Check this out...', url:'/go', style:'primary' }}},
+        {id: thumb2, _label:'thumb2', entity:'thumb', src:'/web/img/rocket.png', url:'/...', alt:'Faster', caption:{label:'Much Faster', desc:"Our CDN provides on demand virtual CDN deploying services, which will greatly improve your website access...", btn:{label:'More detail...', url:'/go', style:'success' }}},
+        {id: thumb3, _label:'thumb3', entity:'thumb', src:'/web/img/dollar.png', url:'/...', alt:'Cheaper',caption: {label:'Less Fee', desc:"With our cloud CDN, only increase the virutal severs when needed, this will cut unesscessray cost...", btn:{label:'Register today...', url:'/go', style:'info'}}},
+        {id: thumb4, _label:'thumb4', entity:'thumb', src:'/web/img/cloud_solutions.png', url:'/...'},
         {id: customer1, entity:'thumb', src:'/web/img/fengxing.jpg', url:'/...', alt:'customer1'},
         {id: customer2, entity:'thumb', src:'/web/img/fengxing.jpg', url:'/...', alt:'Customer2'},
         {id: customer3, entity:'thumb', src:'/web/img/fengxing.jpg', url:'/...', alt:'Customer3'},
         {id: customer4, entity:'thumb', src:'/web/img/fengxing.jpg', url:'/...', alt:'Customer4'},
-        {id: step1, label:'More Powerfull', desc:"With our cloud CDN, we provide full stack CDN services includes HTML and Stream...", btn:{label:'Check this out...', url:'/go', style:'primary', right:1 }},
-        {id: step2, label:'Much Faster', desc:"Our CDN provides on demand virtual CDN deploying services, which will greatly improve your website access...", btn:{label:'More detail...', url:'/go', style:'success', right:1 }},
-        {id: step3, label:'Less Fee', desc:"Use our cloud CDN to increase or decrease your virtual server ", btn:{label:'Register today...', url:'/go', style:'info', right:1 }},
-        {id: step4, label:'Product', desc:"<img src=\"/web/img/Compare.png\"/>this is product"},
+        {id: step1, label:'产品', desc:"产品", btn:{label:'Check this out...', url:'/go', style:'primary', right:1 }},
+        {id: step2, label:'解决方案', desc:"Our CDN provides on demand virtual CDN deploying services, which will greatly improve your website access...", btn:{label:'More detail...', url:'/go', style:'success', right:1 }},
+        {id: step3, label:'客户', desc:"Use our cloud CDN to increase or decrease your virtual server ", btn:{label:'Register today...', url:'/go', style:'info', right:1 }},
+        {id: step4, label:'成功案例', desc:"<img src=\"/web/img/Compare.png\"/>this is product"},
         {id: about, label:'联系我们', desc:"电话：010-65694176-800<br>传真：010-65694176-329<br>Email: support@algoblu.com</p>"},
         {id: news, label:'产品和服务', desc:'<a href="#">Cloud CDN</a><br><a href="#">CDN More Product</a>'},
         {id: follow, label:'Algoblu动态', desc:"<img src=\"/web/img/icon-facebook-32.png\"/> <img src=\"/web/img/icon-google-plus-32.png\"/> <img src=\"/web/img/icon-rss-32.png\"/> <img src=\"/web/img/icon-twitter-32.png\"/>"},

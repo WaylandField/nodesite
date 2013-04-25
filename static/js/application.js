@@ -35,14 +35,16 @@ $(document).ready(function(){
                 html.push('<li >');
                 if(k=='id'){
                     html.push(k,' -- ',attr,'<input type="hidden" dataType="',(typeof attr),'" id="',newId,'" value="',attr,'">');
-                }else if(k!=='desc'){
+                }else if(k=='desc'){
+                    html.push(k,' -- <textarea id="',newId,'" name=',newId,'>',attr,'</textarea>');
+                    html.push('<script type="text/javascript"> CKEDITOR.replace(\'',newId,'\');</script>');
+                }else if(k=='brand'){
+                    html.push(k,' -- <textarea name=',newId,'>',attr,'</textarea>');
+                }else{
                     html.push(k,' -- <input id="',newId,'" dataType="',(typeof attr),'" type="text" value="',attr,'">');
                     if(k=='src'){
                     	createFileUpload(html,newId);
                     }
-                }else{
-                    html.push(k,' -- <textarea id="',newId,'" name=',newId,'>',attr,'</textarea>');
-                    html.push('<script type="text/javascript"> CKEDITOR.replace(\'',newId,'\');</script>');
                 }
                 html.push('</li>');
                 break;
@@ -149,9 +151,10 @@ $(document).ready(function(){
     var getCKEditorInfo = function (){
     	$('textarea').each(function () {
 		   var $textarea = $(this);
-		   $textarea.val(CKEDITOR.instances[$textarea.attr('name')].getData());
+           var _ckeditor = CKEDITOR.instances[$textarea.attr('name')];
+		   _ckeditor && $textarea.val(_ckeditor.getData());
 		});
-    }
+    };
 
     var loadSingle = function(res){
         $.ajax({dataType:'json', 

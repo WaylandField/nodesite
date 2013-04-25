@@ -129,33 +129,36 @@ dao.delete('page', {}, function(){
         path:'/solution',
         label:'解决方案',
         config:{
-        	css:'fixed_navi_body'
-        },
-         items:[
-        	{id:'navi', ui:'navibar', dataId:naviId, config:{
-                    brand1: "<img src=\"/web/img/logo.png\"/><small>Time To Get Faster</small>",
-                    brand: "Algoblu <small>Time To Get Faster</small>",
-                    container: 1,
-                    innerContainer:1,
-                    fixedTop:1,
-                    inverse:0,
-                    right:1
-             }},
-             {ui:'grid', rows:[[
-                    {ui:'hero', span:8, dataId: step1, config:{level:4}},
-                    {ui:'hero', span:4, dataId: step2, config:{level:4}},
-                ]],config:{
-                    container:1
-                }},
+                 css:'fixed_navi_body'
+              },
+        items:[
+              {id:'navi', ui:'navibar', dataId:naviId, config:{
+                  brand: "<img src=\"/web/img/logo.png\"/>",
+                  container: 1,
+                  innerContainer:1,
+                  fixedTop:1,
+                  inverse:0,
+                  right:1
+              }},
+              {ui:'bread', items:[{url:'/', label:'首页'},{label:'解决方案'}], config:{
+                  container:1,
+                  css:'container-lead'
+              }},
               {ui:'grid', rows:[[
-                    {span:3, dataId: step1, config:{level:5}},
-                    {span:3, dataId: step2, config:{level:5}},
-                    {span:3, dataId: step2, config:{level:5}},
-                    {span:3, dataId: step3, config:{level:5}}
-              ]],config:{
-                    css:'footer',
-                    container:1
+                  {dataId: step1, config:{level:4, span:8 }},
+                  {dataId: feature2, config:{level:4, span:4, }}]
+              ],config:{
+                  container:1
+              }},
+              {ui:'grid', rows:[[
+                  {dataId: about, config:{span:4, level:5 }},
+                  {dataId: news, config:{span:4, level:5}},
+                  {dataId: follow, config:{span:4, level:5}}
+              ],[{dataId: footstep1, config:{span:10}}]],config:{
+                  css:'footer',
+                  container:1
               }}
+              
           ]
           },
          {
@@ -163,67 +166,73 @@ dao.delete('page', {}, function(){
         path:'/customer',
         label:'客户&案例',
         config:{
-        	css:'fixed_navi_body'
-        },
-         items:[
-        	{id:'navi', ui:'navibar', dataId:naviId, config:{
-                    brand1: "<img src=\"/web/img/logo.png\"/><small>Time To Get Faster</small>",
-                    brand: "Algoblu <small>Time To Get Faster</small>",
-                    container: 1,
-                    innerContainer:1,
-                    fixedTop:1,
-                    inverse:0,
-                    right:1
-             }},
-             {ui:'grid', rows:[[
-                    {ui:'hero', span:8, dataId: step1, config:{level:4}},
-                    {ui:'hero', span:4, dataId: step2, config:{level:4}}
-                ]],config:{
-                    container:1
-                }},
+                 css:'fixed_navi_body'
+              },
+        items:[
+              {id:'navi', ui:'navibar', dataId:naviId, config:{
+                  brand: "<img src=\"/web/img/logo.png\"/>",
+                  container: 1,
+                  innerContainer:1,
+                  fixedTop:1,
+                  inverse:0,
+                  right:1
+              }},
+              {ui:'bread', items:[{url:'/', label:'首页'},{label:'客户&案例'}], config:{
+                  container:1,
+                  css:'container-lead'
+              }},
               {ui:'grid', rows:[[
-                    {span:3, dataId: step1, config:{level:5}},
-                    {span:3, dataId: step2, config:{level:5}},
-                    {span:3, dataId: step2, config:{level:5}},
-                    {span:3, dataId: step3, config:{level:5}}
-              ]],config:{
-                    css:'footer',
-                    container:1
+                  {dataId: step1, config:{level:4, span:8 }},
+                  {dataId: feature2, config:{level:4, span:4, }}]
+              ],config:{
+                  container:1
+              }},
+              {ui:'grid', rows:[[
+                  {dataId: about, config:{span:4, level:5 }},
+                  {dataId: news, config:{span:4, level:5}},
+                  {dataId: follow, config:{span:4, level:5}}
+              ],[{dataId: footstep1, config:{span:10}}]],config:{
+                  css:'footer',
+                  container:1
               }}
+              
           ]
           },
          {
         id:'product1',
-        path:'/customer',
+        path:'/customers',
         label:'客户',
         config:{
-        	css:'fixed_navi_body'
-        },
-         items:[
-        	{id:'navi', ui:'navibar', dataId:naviId, config:{
-                    brand1: "<img src=\"/web/img/logo.png\"/><small>Time To Get Faster</small>",
-                    brand: "Algoblu <small>Time To Get Faster</small>",
-                    container: 1,
-                    innerContainer:1,
-                    fixedTop:1,
-                    inverse:0,
-                    right:1
-             }},
-             {ui:'grid', rows:[[
-                    {ui:'hero', span:8, dataId: step1, config:{level:4}},
-                    {ui:'hero', span:4, dataId: step2, config:{level:4}},
-                ]],config:{
-                    container:1
-                }},
+                 css:'fixed_navi_body'
+              },
+        items:[
+              {id:'navi', ui:'navibar', dataId:naviId, config:{
+                  brand: "<img src=\"/web/img/logo.png\"/>",
+                  container: 1,
+                  innerContainer:1,
+                  fixedTop:1,
+                  inverse:0,
+                  right:1
+              }},
+              {ui:'bread', items:[{url:'/', label:'首页'},{label:'客户'}], config:{
+                  container:1,
+                  css:'container-lead'
+              }},
               {ui:'grid', rows:[[
-                    {span:3, dataId: step1, config:{level:5}},
-                    {span:3, dataId: step2, config:{level:5}},
-                    {span:3, dataId: step2, config:{level:5}},
-                    {span:3, dataId: step3, config:{level:5}}
-              ]],config:{
-                    css:'footer',
-                    container:1
+                  {dataId: step1, config:{level:4, span:8 }},
+                  {dataId: feature2, config:{level:4, span:4, }}]
+              ],config:{
+                  container:1
+              }},
+              {ui:'grid', rows:[[
+                  {dataId: about, config:{span:4, level:5 }},
+                  {dataId: news, config:{span:4, level:5}},
+                  {dataId: follow, config:{span:4, level:5}}
+              ],[{dataId: footstep1, config:{span:10}}]],config:{
+                  css:'footer',
+                  container:1
               }}
+              
           ]
           },
          {
@@ -231,33 +240,36 @@ dao.delete('page', {}, function(){
         path:'/cases',
         label:'成功案例',
         config:{
-        	css:'fixed_navi_body'
-        },
-         items:[
-        	{id:'navi', ui:'navibar', dataId:naviId, config:{
-                    brand1: "<img src=\"/web/img/logo.png\"/><small>Time To Get Faster</small>",
-                    brand: "Algoblu <small>Time To Get Faster</small>",
-                    container: 1,
-                    innerContainer:1,
-                    fixedTop:1,
-                    inverse:0,
-                    right:1
-             }},
-             {ui:'grid', rows:[[
-                    {ui:'hero', span:8, dataId: step1, config:{level:4}},
-                    {ui:'hero', span:4, dataId: step2, config:{level:4}},
-                ]],config:{
-                    container:1
-                }},
+                 css:'fixed_navi_body'
+              },
+        items:[
+              {id:'navi', ui:'navibar', dataId:naviId, config:{
+                  brand: "<img src=\"/web/img/logo.png\"/>",
+                  container: 1,
+                  innerContainer:1,
+                  fixedTop:1,
+                  inverse:0,
+                  right:1
+              }},
+              {ui:'bread', items:[{url:'/', label:'首页'},{label:'成功案例'}], config:{
+                  container:1,
+                  css:'container-lead'
+              }},
               {ui:'grid', rows:[[
-                    {span:3, dataId: step1, config:{level:5}},
-                    {span:3, dataId: step2, config:{level:5}},
-                    {span:3, dataId: step2, config:{level:5}},
-                    {span:3, dataId: step3, config:{level:5}}
-              ]],config:{
-                    css:'footer',
-                    container:1
+                  {dataId: step1, config:{level:4, span:8 }},
+                  {dataId: feature2, config:{level:4, span:4, }}]
+              ],config:{
+                  container:1
+              }},
+              {ui:'grid', rows:[[
+                  {dataId: about, config:{span:4, level:5 }},
+                  {dataId: news, config:{span:4, level:5}},
+                  {dataId: follow, config:{span:4, level:5}}
+              ],[{dataId: footstep1, config:{span:10}}]],config:{
+                  css:'footer',
+                  container:1
               }}
+              
           ]
           },
          {
@@ -265,33 +277,36 @@ dao.delete('page', {}, function(){
         path:'/partner',
         label:'合作伙伴',
         config:{
-        	css:'fixed_navi_body'
-        },
-         items:[
-        	{id:'navi', ui:'navibar', dataId:naviId, config:{
-                    brand1: "<img src=\"/web/img/logo.png\"/><small>Time To Get Faster</small>",
-                    brand: "Algoblu <small>Time To Get Faster</small>",
-                    container: 1,
-                    innerContainer:1,
-                    fixedTop:1,
-                    inverse:0,
-                    right:1
-             }},
-             {ui:'grid', rows:[[
-                    {ui:'hero', span:8, dataId: step1, config:{level:4}},
-                    {ui:'hero', span:4, dataId: step2, config:{level:4}},
-                ]],config:{
-                    container:1
-                }},
+                 css:'fixed_navi_body'
+              },
+        items:[
+              {id:'navi', ui:'navibar', dataId:naviId, config:{
+                  brand: "<img src=\"/web/img/logo.png\"/>",
+                  container: 1,
+                  innerContainer:1,
+                  fixedTop:1,
+                  inverse:0,
+                  right:1
+              }},
+              {ui:'bread', items:[{url:'/', label:'首页'},{label:'合作伙伴'}], config:{
+                  container:1,
+                  css:'container-lead'
+              }},
               {ui:'grid', rows:[[
-                    {span:3, dataId: step1, config:{level:5}},
-                    {span:3, dataId: step2, config:{level:5}},
-                    {span:3, dataId: step2, config:{level:5}},
-                    {span:3, dataId: step3, config:{level:5}}
-              ]],config:{
-                    css:'footer',
-                    container:1
+                  {dataId: step1, config:{level:4, span:8 }},
+                  {dataId: feature2, config:{level:4, span:4, }}]
+              ],config:{
+                  container:1
+              }},
+              {ui:'grid', rows:[[
+                  {dataId: about, config:{span:4, level:5 }},
+                  {dataId: news, config:{span:4, level:5}},
+                  {dataId: follow, config:{span:4, level:5}}
+              ],[{dataId: footstep1, config:{span:10}}]],config:{
+                  css:'footer',
+                  container:1
               }}
+              
           ]
           },
          {
@@ -299,33 +314,36 @@ dao.delete('page', {}, function(){
         path:'/about',
         label:'关于我们',
         config:{
-        	css:'fixed_navi_body'
-        },
-         items:[
-        	{id:'navi', ui:'navibar', dataId:naviId, config:{
-                    brand1: "<img src=\"/web/img/logo.png\"/><small>Time To Get Faster</small>",
-                    brand: "Algoblu <small>Time To Get Faster</small>",
-                    container: 1,
-                    innerContainer:1,
-                    fixedTop:1,
-                    inverse:0,
-                    right:1
-             }},
-             {ui:'grid', rows:[[
-                    {ui:'hero', span:8, dataId: step1, config:{level:4}},
-                    {ui:'hero', span:4, dataId: step2, config:{level:4}},
-                ]],config:{
-                    container:1
-                }},
+                 css:'fixed_navi_body'
+              },
+        items:[
+              {id:'navi', ui:'navibar', dataId:naviId, config:{
+                  brand: "<img src=\"/web/img/logo.png\"/>",
+                  container: 1,
+                  innerContainer:1,
+                  fixedTop:1,
+                  inverse:0,
+                  right:1
+              }},
+              {ui:'bread', items:[{url:'/', label:'首页'},{label:'关于我们'}], config:{
+                  container:1,
+                  css:'container-lead'
+              }},
               {ui:'grid', rows:[[
-                    {span:3, dataId: step1, config:{level:5}},
-                    {span:3, dataId: step2, config:{level:5}},
-                    {span:3, dataId: step2, config:{level:5}},
-                    {span:3, dataId: step3, config:{level:5}}
-              ]],config:{
-                    css:'footer',
-                    container:1
+                  {dataId: step1, config:{level:4, span:8 }},
+                  {dataId: feature2, config:{level:4, span:4, }}]
+              ],config:{
+                  container:1
+              }},
+              {ui:'grid', rows:[[
+                  {dataId: about, config:{span:4, level:5 }},
+                  {dataId: news, config:{span:4, level:5}},
+                  {dataId: follow, config:{span:4, level:5}}
+              ],[{dataId: footstep1, config:{span:10}}]],config:{
+                  css:'footer',
+                  container:1
               }}
+              
           ]
           }
     ], function(){

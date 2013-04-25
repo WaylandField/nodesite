@@ -21,6 +21,12 @@ module.exports = function(app, verbose){
                         items: sect.data
                     }).html);
                     break;
+                case 'bread':
+                    html.push(uiFactory.create(sect.ui,{
+                        config:sect.config?sect.config:{},
+                        items: sect.items
+                    }).html);
+                    break;
                 case 'thumbnails':
                     html.push(uiFactory.create(sect.ui,{
                         config:sect.config?sect.config:{},
@@ -59,9 +65,9 @@ module.exports = function(app, verbose){
                 description:page.label,
                 config: page.config
             });
-            res.set({
-                'Content-Length': ui.html.length
-            });
+//            res.set({
+//                'Content-Length': ui.html.length
+//            });
             cache[page.id] = ui.html;
             res.send(ui.html);
         }else{

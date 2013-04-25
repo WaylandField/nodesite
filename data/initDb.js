@@ -74,7 +74,7 @@ dao.delete('page', {}, function(){
                     {dataId: customer3, config:{span:3}},
                     {dataId: customer4, config:{span:3}}
                 ],config:{
-                    container:1
+                    container:1, title:'云CDN客户'
                 }},
                 {ui:'grid', rows:[[
                     {dataId: about, config:{span:4, level:5 }},
@@ -88,38 +88,41 @@ dao.delete('page', {}, function(){
             ]
         },
         {
-        id:'product',
-        path:'/product',
-        label:'产品',
-        config:{
-        	css:'fixed_navi_body'
-        },
-        items:[
-        	{id:'navi', ui:'navibar', dataId:naviId, config:{
-                    brand1: "<img src=\"/web/img/logo.png\"/><small>Time To Get Faster</small>",
-                    brand: "Algoblu <small>Time To Get Faster</small>",
+            id:'product',
+            path:'/product',
+            label:'Algoblu云CDN产品',
+            config:{
+                 css:'fixed_navi_body'
+                },
+            items:[
+                {id:'navi', ui:'navibar', dataId:naviId, config:{
+                    brand: "<img src=\"/web/img/logo.png\"/>",
                     container: 1,
                     innerContainer:1,
                     fixedTop:1,
                     inverse:0,
                     right:1
-             }},
-             {id:'steps', ui:'grid', rows:[[
-                    {span:8, dataId: step4},
-                    {offset:1, span:3, dataId: step2}
-                ]],config:{
+                }},
+                {ui:'bread', items:[{url:'/', label:'首页'},{label:'产品'}], config:{
+                    container:1,
+                    css:'container-lead'
+                }},
+                {ui:'grid', rows:[[
+                    {dataId: step1, config:{level:4, span:8 }},
+                    {dataId: feature2, config:{level:4, span:4, }}]
+                ],config:{
                     container:1
-              }},
-              {ui:'grid', rows:[[
-                    {span:3, dataId: step1, config:{level:5}},
-                    {span:3, dataId: step2, config:{level:5}},
-                    {span:3, dataId: step2, config:{level:5}},
-                    {span:3, dataId: step3, config:{level:5}}
-              ]],config:{
+                }},
+                {ui:'grid', rows:[[
+                    {dataId: about, config:{span:4, level:5 }},
+                    {dataId: news, config:{span:4, level:5}},
+                    {dataId: follow, config:{span:4, level:5}}
+                ],[{dataId: footstep1, config:{span:10}}]],config:{
                     css:'footer',
                     container:1
-              }}
-        ]
+                }}
+                
+            ]
         },
          {
         id:'solution',
